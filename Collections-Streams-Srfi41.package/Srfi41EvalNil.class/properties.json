@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Srfi41Eval",
+	"category" : "Collections-Streams-Srfi41",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Srfi41EvalNil",
+	"type" : "normal"
+}

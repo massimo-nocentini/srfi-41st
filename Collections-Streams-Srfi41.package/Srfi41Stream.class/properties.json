@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Collections-Streams-Srfi41",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"promise"
+	],
+	"name" : "Srfi41Stream",
+	"type" : "normal"
+}
