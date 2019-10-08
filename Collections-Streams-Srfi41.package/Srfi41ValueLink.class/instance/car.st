@@ -1,0 +1,3 @@
+testing
+car
+	^ self value

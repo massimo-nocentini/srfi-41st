@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ValueLink",
+	"category" : "Collections-Streams-Srfi41",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Srfi41ValueLink",
+	"type" : "normal"
+}
