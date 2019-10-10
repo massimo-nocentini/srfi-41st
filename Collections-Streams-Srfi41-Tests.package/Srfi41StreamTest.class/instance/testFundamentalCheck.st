@@ -4,11 +4,11 @@ testFundamentalCheck
 
 	self
 		assert:
-			(((4 to: -10 by: -1) asSrfi41Stream collect: [ :each | 1 / each ])
-				next: 4) 
+			(((4 to: -10 by: -1) asSrfi41Stream collect: #reciprocal )
+				next: 4)
 		equals:
 			{(1 / 4).
 			(1 / 3).
 			(1 / 2).
-			1} 
-			modulo: #asOrderedCollection
+			1}
+		modulo: #asOrderedCollection

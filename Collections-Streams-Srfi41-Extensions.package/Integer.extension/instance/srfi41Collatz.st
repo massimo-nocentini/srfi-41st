@@ -1,4 +1,4 @@
-*Collections-Streams-Srfi41-ArithSequences
+*Collections-Streams-Srfi41-Extensions
 srfi41Collatz
 ^ [ :x | 
 	x even

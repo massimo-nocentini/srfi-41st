@@ -1,0 +1,3 @@
+operations
+naturalsCorecursive
+	^ Srfi41NumbersSequenceNaturalsCorecursive  new value

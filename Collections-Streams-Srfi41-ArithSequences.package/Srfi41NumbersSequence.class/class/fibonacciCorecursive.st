@@ -1,0 +1,3 @@
+operations
+fibonacciCorecursive
+	^ Srfi41NumbersSequenceFibonacciCorecursive new value
