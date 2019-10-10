@@ -1,3 +1,3 @@
 evaluating
 value
-	self subclassResponsibility 
+	^ [self definition] srfi41Stream 
