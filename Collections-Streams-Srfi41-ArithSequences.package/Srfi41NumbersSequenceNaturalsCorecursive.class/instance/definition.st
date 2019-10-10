@@ -1,6 +1,8 @@
 accessing
 definition
-	| nats |
-	nats := nil. "to quite the quality checker."
+	"| nats |
+	nats := nil.	
 	nats := [ 0 ] ~ [ nats collect: [ :n | n + 1 ] ].
-	^ nats
+	^ nats"
+
+	^ [ :nats | nats collect: #increase ] srfi41CoRecursionWithInitials: {0}
