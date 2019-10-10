@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"iterativeNats",
+		"corecursiveNats"
+	],
 	"name" : "Srfi41StreamTest",
 	"type" : "normal"
 }
