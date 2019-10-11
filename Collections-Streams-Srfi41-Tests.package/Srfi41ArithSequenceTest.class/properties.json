@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "<historical>",
+	"commentStamp" : "",
 	"super" : "Srfi41AbstractTest",
 	"category" : "Collections-Streams-Srfi41-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "Srfi41StreamTest",
+	"instvars" : [
+		"iterativeNats",
+		"corecursiveNats"
+	],
+	"name" : "Srfi41ArithSequenceTest",
 	"type" : "normal"
 }
