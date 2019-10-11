@@ -1,4 +1,4 @@
-*Collections-Streams-Srfi41
+*Collections-Streams-Srfi41-Extensions
 foldr: aBlock init: init
 	^ self
 		ifEmpty: [ init value ]
