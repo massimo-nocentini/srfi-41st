@@ -1,12 +1,12 @@
 as yet unclassified
-concat
+concatFair
 	^ [ self
-		ifEmpty: [ {  } asSrfi41Stream  ]
+		ifEmpty: [ self ]
 		ifNotEmpty: [ | carStream cdrOfStreams |
 			carStream := self car.
 			cdrOfStreams := self cdr.
 			carStream
-				ifEmpty: [ cdrOfStreams concat ]
+				ifEmpty: [ cdrOfStreams concatFair ]
 				ifNotEmpty: [ [ carStream car ]
-						srfi41Cons: [ ([ carStream cdr ] srfi41Cons: [ cdrOfStreams ]) concat ] ] ] ]
+						srfi41Cons: [ (cdrOfStreams , carStream cdr srfi41Singleton) concatFair ] ] ] ]
 		srfi41Stream
