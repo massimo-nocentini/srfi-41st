@@ -1,9 +1,9 @@
 tests
 testDovetail
 	| ones twos threes streams |
-	ones := 1 srfi41Repeat.
-	twos := 2 srfi41Repeat.
-	threes := 3 srfi41Repeat.
+	ones := [ 1 ] srfi41Repeat.
+	twos := [ 2 ] srfi41Repeat.
+	threes := [3] srfi41Repeat.
 	streams := {ones.
 	twos.
 	threes} asSrfi41Stream.

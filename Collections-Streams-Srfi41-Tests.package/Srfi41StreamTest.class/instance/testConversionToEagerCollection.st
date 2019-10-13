@@ -1,14 +1,11 @@
 tests
 testConversionToEagerCollection
-	self
-		assert: {} asSrfi41Stream
-		equals: {}
-		modulo: #asOrderedCollection.
-
+	
 	"10 is just a number; pick another number, any number..."
-	(1 to: 10)
-		in: [ :range | 
+(	Array with: {} with: (1 to: 10))
+		do: [ :range | 
 			self
-				assert: range asSrfi41Stream 
-				equals: range 
-				modulo: #asOrderedCollection ]
+				assert: range asSrfi41Stream
+				equals: range
+				modulo: #asOrderedCollection.
+			self assert: range asSrfi41Stream equals: range modulo: #asArray ]
