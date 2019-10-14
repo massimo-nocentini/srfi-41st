@@ -1,7 +1,7 @@
 as yet unclassified
 dovetailClockwise
 	^ [ self
-		ifEmpty: [ [{} asSrfi41Stream] srfi41Repeat ]
+		ifEmpty: [ [ {} asSrfi41Stream ] srfi41Repeat ]
 		ifNotEmpty: [ | aStream |
 			aStream := self car.
 			aStream
@@ -9,5 +9,5 @@ dovetailClockwise
 				ifNotEmpty: [ [ [ aStream car ] srfi41Singleton ]
 						srfi41Cons: [ aStream cdr
 								zip: self cdr dovetailClockwise
-								with: [ :car :cdr | [ car ] srfi41Cons: [ cdr ] ] ] ] ] ]
+								with: [ :car :cdr | [ car ] srfi41ConsStream:  cdr  ] ] ] ] ]
 		srfi41Stream

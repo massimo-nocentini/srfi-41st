@@ -1,10 +1,10 @@
 tests
-testInterleave
-	| ones  |
+testIntersperse
+	| ones |
 	ones := [ 1 ] srfi41Repeat.
 	self
 		assert:
-			(((ones interleave: 2) next: 10)
+			(((ones intersperse: 2) next: 10)
 				collect: [ :s | (s next: 10) asArray ])
 		equals:
 			(OrderedCollection new
