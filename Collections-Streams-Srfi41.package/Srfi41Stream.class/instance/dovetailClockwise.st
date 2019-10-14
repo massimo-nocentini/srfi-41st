@@ -6,8 +6,8 @@ dovetailClockwise
 			aStream := self car.
 			aStream
 				ifEmpty: [ self cdr dovetailClockwise ]
-				ifNotEmpty: [ [ [ aStream car ] srfi41Singleton ]
+				ifNotEmpty: [ [  aStream car  srfi41Singleton ]
 						srfi41Cons: [ aStream cdr
 								zip: self cdr dovetailClockwise
-								with: [ :car :cdr | [ car ] srfi41ConsStream:  cdr  ] ] ] ] ]
+								with: [ :car :cdr | [ car ] srfi41ConsStream: cdr ] ] ] ] ]
 		srfi41Stream

@@ -1,4 +1,3 @@
 *Collections-Streams-Srfi41
 ~ aBlock
-	^ [ self srfi41Cons: aBlock ]
-srfi41Stream
+	^  self srfi41Cons: aBlock 
