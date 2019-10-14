@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Srfi41TrampolineObject",
+	"category" : "Collections-Streams-Srfi41",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Srfi41TrampolineSequenceableCollection",
+	"type" : "normal"
+}
