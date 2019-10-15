@@ -3,7 +3,21 @@ testRandomNumbers
 	10
 		in: [ :n | 
 			self
-				assert: (100 srfi41ParkMiller  next: n) 
+				assert: (100 srfi41ParkMiller next: n)
 				equals:
 					#(1680700 2477721124 3350996348 289468388 3192218044 3172171172 1251842556 2968022884 1810435644 2443543844)
+				modulo: #asOrderedCollection.
+			self
+				assert: (Srfi41NumbersSequence random next: n)
+				equals:
+					#(0.13153778814316625
+0.7556053221950332
+0.4586501319234493
+0.5327672374121692
+0.21895918632809036
+0.04704461621448613
+0.678864716868319
+0.6792964058366122
+0.9346928959408276
+0.3835020774898595)
 				modulo: #asOrderedCollection ]
