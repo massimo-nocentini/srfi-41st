@@ -2,8 +2,8 @@ as yet unclassified
 mergeWithSortBlock: aBlock
 	^ [ self
 		letCarCdr: [ :carStream :streamOfStreams | 
-			streamOfStreams ifEmpty:
-				[ carStream srfi41Singleton ]
+			streamOfStreams
+				ifEmpty: [ carStream  ]
 				ifNotEmpty: [ carStream
 						mergeStream: (streamOfStreams mergeWithSortBlock: aBlock)
 						withSortBlock: aBlock ] ]
