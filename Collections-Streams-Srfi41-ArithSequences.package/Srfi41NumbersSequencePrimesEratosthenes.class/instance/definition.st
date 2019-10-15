@@ -1,3 +1,5 @@
 evaluating
 definition
-	^  self sieveSrfi41Stream: 2 srfi41CountForward 
+
+	^ 2 srfi41CountForward
+		uniqueWrt: [ :car :each | each isDivisibleBy: car ]
