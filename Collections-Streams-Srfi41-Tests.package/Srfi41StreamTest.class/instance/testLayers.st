@@ -1,11 +1,11 @@
 tests
 testLayers
 	| ones twos threes streams fours fives |
-	ones := [1] srfi41Repeat.
-	twos := [2] srfi41Repeat.
-	threes := [3] srfi41Repeat.
-	fours := [4] srfi41Repeat.
-	fives := [5] srfi41Repeat.
+	ones :=  1  srfi41Repeat.
+	twos :=  2  srfi41Repeat.
+	threes :=  3  srfi41Repeat.
+	fours :=  4  srfi41Repeat.
+	fives :=  5  srfi41Repeat.
 	streams := OrderedCollection new
 		add: ones;
 		add: twos;

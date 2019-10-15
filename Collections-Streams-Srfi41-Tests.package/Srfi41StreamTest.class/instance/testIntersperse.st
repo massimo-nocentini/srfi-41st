@@ -1,7 +1,7 @@
 tests
 testIntersperse
 	| ones |
-	ones := [ 1 ] srfi41Repeat.
+	ones :=  1  srfi41Repeat.
 	self
 		assert:
 			(((ones intersperse: 2) next: 10)
