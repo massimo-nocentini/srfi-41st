@@ -1,7 +1,7 @@
 as yet unclassified
 collect: aBlockClosure with: aCombiner
 	^ [ self
-		ifEmpty: [ Srfi41Stream empty ]
+		ifEmpty: [ {  } asSrfi41Stream  ]
 		ifNotEmpty: [ aCombiner
 				value: [ aBlockClosure value: self car ]
 				value: [ self cdr collect: aBlockClosure with: aCombiner ] srfi41Stream ] ]

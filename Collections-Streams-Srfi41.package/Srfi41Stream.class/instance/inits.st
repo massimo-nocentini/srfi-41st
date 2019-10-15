@@ -1,7 +1,5 @@
 as yet unclassified
 inits
-	^ [ | prefix |
-	prefix := {} asSrfi41Stream.
-	[ prefix ]
-		srfi41Cons: [ self initsWithPrefixStream: prefix] ]
+	^ [ [ {} asSrfi41Stream ]
+		srfi41ConsInjectCar: [ :prefix | self initsWithPrefixStream: prefix ] ]
 		srfi41Stream

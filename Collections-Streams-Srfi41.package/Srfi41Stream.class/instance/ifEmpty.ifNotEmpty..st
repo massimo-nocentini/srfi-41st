@@ -2,4 +2,4 @@ testing
 ifEmpty: eBlock ifNotEmpty: neBlock
 	^ self isEmptyStream
 		ifTrue: eBlock
-		ifFalse: neBlock
+		ifFalse: [neBlock cull: self]

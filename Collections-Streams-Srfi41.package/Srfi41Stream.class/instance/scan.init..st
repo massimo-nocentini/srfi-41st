@@ -1,4 +1,8 @@
 as yet unclassified
 scan: aBlock init: i
-	^ [ self letCarCdr: [ :car :cdr | [ i ] srfi41Cons: [ cdr scan: aBlock init: (aBlock value:i value: car) ] ] ifEmpty: [ i srfi41Singleton ] ]
+	^ [ self
+		ifEmpty: [ i srfi41Singleton ]
+		ifNotEmpty: [
+			[ i ]
+				srfi41Cons: [ self cdr scan: aBlock init: (aBlock value: i value: self car) ] ] ]
 		srfi41Stream
