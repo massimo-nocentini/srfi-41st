@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Srfi41NumbersSequence",
+	"category" : "Collections-Streams-Srfi41-ArithSequences",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Srfi41NumbersSequenceBRGC",
+	"type" : "normal"
+}
