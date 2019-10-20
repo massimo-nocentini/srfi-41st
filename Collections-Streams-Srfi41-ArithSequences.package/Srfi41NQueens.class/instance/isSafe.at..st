@@ -8,5 +8,5 @@ isSafe: p at: n
 			(self
 				check: i
 				with: j
-				with: m + 1
+				with: m 
 				with: n) not ]) and
