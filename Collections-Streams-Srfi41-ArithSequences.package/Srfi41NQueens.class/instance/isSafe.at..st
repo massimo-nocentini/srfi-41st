@@ -6,7 +6,5 @@ isSafe: p at: n
 		zip: p
 		with: [ :i :j | 
 			(self
-				check: i
-				with: j
-				with: m 
-				with: n) not ]) and
+				check: i @ j
+				with: m @  n) not ]) and
