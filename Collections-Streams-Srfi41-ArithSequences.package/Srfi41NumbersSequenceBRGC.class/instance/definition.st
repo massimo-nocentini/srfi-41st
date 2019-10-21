@@ -1,8 +1,9 @@
 evaluating
 definition
-	^ [ :codes | 
-	((codes car collect: (self curriedCons: 0))
-		, (codes car reverse collect: (self curriedCons: 1)))
-		srfi41Singleton ]
-		srfi41CoRecursionWithInitials:
-			{([ Array with: 0 ] srfi41Cons: [ (Array with: 1) srfi41Singleton ]) srfi41Singleton }
+	^ [ :graycode | 
+	graycode
+		collect: [ :codesStream | 
+			(codesStream collect: [ :code | Array with: 0 withAll: code ])
+				,
+					(codesStream reverse collect: [ :code | Array with: 1 withAll: code ]) ] ]
+		srfi41CoRecursionWithInitials: {Array new srfi41Singleton}
