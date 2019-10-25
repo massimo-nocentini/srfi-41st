@@ -1,13 +1,11 @@
 {
-	"commentStamp" : "GlamorousAuthor 10/25/2019 17:12",
+	"commentStamp" : "GlamorousAuthor 10/25/2019 16:35",
 	"super" : "Object",
 	"category" : "Collections-Streams-Srfi41",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"promise"
-	],
-	"name" : "Srfi41Stream",
+	"instvars" : [ ],
+	"name" : "Srfi41StreamDefinition",
 	"type" : "normal"
 }
