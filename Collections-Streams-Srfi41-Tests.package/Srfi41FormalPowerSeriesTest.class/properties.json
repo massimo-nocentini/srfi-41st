@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Srfi41AbstractTest",
+	"category" : "Collections-Streams-Srfi41-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Srfi41FormalPowerSeriesTest",
+	"type" : "normal"
+}
