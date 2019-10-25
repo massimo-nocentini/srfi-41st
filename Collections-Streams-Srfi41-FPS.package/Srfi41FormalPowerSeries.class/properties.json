@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Collections-Streams-Srfi41-FPS",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream",
+		"var"
+	],
+	"name" : "Srfi41FormalPowerSeries",
+	"type" : "normal"
+}
