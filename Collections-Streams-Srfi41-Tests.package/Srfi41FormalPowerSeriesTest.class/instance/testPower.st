@@ -11,7 +11,7 @@ testPower
 		upto: 30
 		modulo: #asOrderedCollection.
 	self
-		assert: 1 srfi41Repeat asFPS ** 4
-		equals: Srfi41NumbersSequence triangulars cdr asFPS
+		assert: (1 asFPS - #t asFPS) ** 2
+		equals: {1 . -2 . 1} asFPS
 		upto: 30
 		modulo: #asOrderedCollection
