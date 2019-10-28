@@ -1,3 +1,3 @@
 as yet unclassified
 sin
-	^ ([ 0 ] srfi41Cons: [ self cos integral stream ]) asFPS
+	^ [ 0 ] srfi41ConsFPS: [ self cos integral ]

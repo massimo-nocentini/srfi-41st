@@ -4,5 +4,5 @@ reciprocal
 	carReciprocal := self stream car reciprocal.
 	R := nil.
 	R := [ carReciprocal ]
-		srfi41Cons: [ (self stream cdr asFPS * R asFPS * carReciprocal negated asFPS)
-				stream ] ] srfi41Stream asFPS
+		srfi41ConsFPS: [ self stream cdr asFPS * R * carReciprocal negated asFPS ].
+	R stream ] srfi41Stream asFPS
