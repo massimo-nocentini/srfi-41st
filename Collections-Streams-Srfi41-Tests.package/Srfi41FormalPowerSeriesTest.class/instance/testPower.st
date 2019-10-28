@@ -14,4 +14,9 @@ testPower
 		assert: (1 asFPS - #t asFPS) ** 2
 		equals: {1 . -2 . 1} asFPS
 		upto: 30
+		modulo: #asOrderedCollection.
+	self
+		assert: (1 asFPS - (2 asFPS * (#t asFPS ** 2))) ** 3
+		equals: {1 . 0 . -6 . 0 . 12 . 0 . -8} asFPS
+		upto: 30
 		modulo: #asOrderedCollection
