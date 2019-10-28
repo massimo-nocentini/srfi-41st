@@ -4,6 +4,5 @@ revert
 		ifTrue: [ | Y |
 			Y := nil.
 			Y := [ 0 ]
-				srfi41ConsFPS: [ (self stream cdr asFPS value: Y) reciprocal ].
-			Y stream ]
-		ifFalse: [ Error signal: 'hello' ] ] srfi41Stream asFPS
+				srfi41ConsFPS: [ (self stream cdr asFPS value: Y) reciprocal ] ]
+		ifFalse: [ Error signal: 'hello' ] ] srfi41StreamFPS

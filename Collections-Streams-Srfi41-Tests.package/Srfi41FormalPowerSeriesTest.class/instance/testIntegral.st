@@ -1,7 +1,7 @@
 tests
 testIntegral
 	self
-		assert: ((1 asFPS + #t asFPS) reciprocal integralWithConstantBlock: [ 0 ])
+		assert: (1 asFPS + #t asFPS) reciprocal integral
 		equals:
 			{0.
 			1.

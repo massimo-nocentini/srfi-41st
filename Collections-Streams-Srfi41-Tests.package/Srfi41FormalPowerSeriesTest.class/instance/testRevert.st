@@ -1,8 +1,7 @@
 tests
 testRevert
 	| G |
-	G := ((1 asFPS + (#t asFPS ** 2)) reciprocal
-		integralWithConstantBlock: [ 0 ]) revert.
+	G := (1 asFPS + (#t asFPS ** 2)) reciprocal integral revert.
 	self
 		assert: G
 		equals:
