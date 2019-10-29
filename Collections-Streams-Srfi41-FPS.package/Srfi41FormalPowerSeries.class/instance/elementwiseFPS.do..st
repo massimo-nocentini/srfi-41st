@@ -1,4 +1,4 @@
 as yet unclassified
-perform: aBlock withFPS: aSrfi41FormalPowerSeries
+elementwiseFPS: aSrfi41FormalPowerSeries do: aBlock
 	^ (self stream zip: aSrfi41FormalPowerSeries stream with: aBlock)
 		asFPS

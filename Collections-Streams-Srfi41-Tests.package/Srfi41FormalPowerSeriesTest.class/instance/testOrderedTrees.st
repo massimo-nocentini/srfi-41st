@@ -3,7 +3,7 @@ testOrderedTrees
 	| tree forest list |
 	tree := forest := list := nil.
 	tree := [ [ 0 ] srfi41Cons: [ forest stream ] ] srfi41Stream asFPS.
-	list := 1 srfi41Repeat asFPS.
+	list := (1 asFPS - #t asFPS) reciprocal.
 	forest := [ (list value: tree) stream ] srfi41Stream asFPS.
 	self
 		assert: forest

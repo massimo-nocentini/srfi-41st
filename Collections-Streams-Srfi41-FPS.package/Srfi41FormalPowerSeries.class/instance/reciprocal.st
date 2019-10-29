@@ -1,8 +1,8 @@
 as yet unclassified
 reciprocal
 	^ [ | R carReciprocal |
-	carReciprocal := self stream car reciprocal.
+	carReciprocal := self car reciprocal.
 	R := nil.
 	R := [ carReciprocal ]
-		srfi41ConsFPS: [ self stream cdr asFPS * R * carReciprocal negated asFPS ] ]
+		srfi41ConsFPS: [ carReciprocal negated asFPS * R * self cdr ] ]
 		srfi41StreamFPS
