@@ -1,3 +1,5 @@
 accessing
 empty
-	^ self new promise: Srfi41EvalNil new -> nil;yourself
+	^ self new
+		promise: Srfi41EvalNil new -> nil;
+		yourself

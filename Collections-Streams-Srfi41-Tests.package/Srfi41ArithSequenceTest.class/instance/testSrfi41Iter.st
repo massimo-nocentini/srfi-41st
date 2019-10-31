@@ -6,15 +6,7 @@ testSrfi41Iter
 		modulo: #asOrderedCollection.
 	self
 		assert: (([ :n | n double ] srfi41Iter value: 1) next: 8)
-		equals:
-			#(1
-2
-4
-8
-16
-32
-64
-128)
+		equals: #(1 2 4 8 16 32 64 128)
 		modulo: #asOrderedCollection.
 	self
 		assert: (([ :n | n squared ] srfi41Iter value: 2) next: 8)

@@ -1,8 +1,6 @@
 accessing
 definition
-	"| nats |
-	nats := nil.	
-	nats := [ 0 ] ~ [ nats collect: [ :n | n + 1 ] ].
-	^ nats"
-
-	^ [ :nats | nats collect: #increase ] srfi41CoRecursionWithInitials: {0}
+	| nats |
+	nats := nil.
+	nats := [ 0 ] srfi41Cons: [ nats collect: #increase ].
+	^ nats
