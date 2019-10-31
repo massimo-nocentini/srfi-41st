@@ -6,4 +6,5 @@ test123Stream
 	self assert: aStream car equals: 1.
 	self assert: aStream cadr equals: 2.
 	self assert: aStream caddr equals: 3.
-	self assert: aStream cdr cdr cdr isEmptyStream 
+	self assert: aStream cdr cdr cdr isEmptyStream.
+	self should: [ aStream cdr cdr cdr cdr ] raise: ShouldNotImplement
