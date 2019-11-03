@@ -1,3 +1,3 @@
 as yet unclassified
 negated
-	^ -1 asFPS * self
+	^ (self stream collect: #negated) asFPS
