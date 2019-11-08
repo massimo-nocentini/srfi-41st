@@ -1,9 +1,11 @@
 as yet unclassified
 concat
 	^ [ self
-		letCarCdr: [  :carStream :cdrOfStreams |
+		ifEmpty: [ {} asSrfi41Stream ]
+		ifNotEmpty: [ | carStream |
+			carStream := self car.
 			carStream
-				ifEmpty: [ cdrOfStreams concat ]
+				ifEmpty: [ self cdr concat ]
 				ifNotEmpty: [ [ carStream car ]
-						srfi41Cons: [ ([ carStream cdr ] srfi41ConsStream: cdrOfStreams) concat ] ] ]
-		ifEmpty: [ {} asSrfi41Stream ] ] srfi41Stream
+						srfi41Cons: [ ([ carStream cdr ] srfi41Cons: [ self cdr ]) concat ] ] ] ]
+		srfi41Stream

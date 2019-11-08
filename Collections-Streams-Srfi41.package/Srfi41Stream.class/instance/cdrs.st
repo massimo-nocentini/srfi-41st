@@ -2,7 +2,5 @@ as yet unclassified
 cdrs
 	"Aka #tails."
 
-	^ [ [ self ]
-		srfi41Cons: [ self
-				ifEmpty: [ {} asSrfi41Stream ]
-				ifNotEmpty: [  self cdr cdrs ] ] ] srfi41Stream
+	^ [ [ self ] srfi41Cons: [ self ifNotEmpty: [ self cdr cdrs ] ] ]
+		srfi41Stream

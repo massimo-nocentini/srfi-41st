@@ -1,5 +1,5 @@
 as yet unclassified
-asArray2DRows: rows columns: cols
+asArray2Drows: rows columns: cols
 	^ Array2D
 		rows: rows
 		columns: cols
