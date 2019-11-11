@@ -1,8 +1,8 @@
 accessing
 revert
-	^ [ self car isZero
-		ifTrue: [ | Y |
-			Y := nil.
-			Y := [ 0 ] srfi41ConsFPS: [ (self cdr value: Y) reciprocal ] ]
-		ifFalse: [ Error signal: 'Reversion requests that car has to be 0.' ] ]
+	"Theoretically we should ensure that `self assert: self car equals: 0"
+
+	^ [ | Y |
+	Y := nil.
+	Y := [ self car ] srfi41ConsFPS: [ (self cdr value: Y) reciprocal ] ]
 		srfi41StreamFPS

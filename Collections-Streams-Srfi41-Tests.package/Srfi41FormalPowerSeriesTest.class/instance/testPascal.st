@@ -17,9 +17,9 @@ testPascal
 				equals: pascalMatrix
 			"self
 				assert:
-					(((1 - t) reciprocal
+					(({1 . -1} asFPS reciprocal
 						value:
 							([ 0 asFPS ]
 								srfi41Cons: [ [ {1 . 1} asFPS ] srfi41Cons: [ 0 srfi41Repeat collect: #asFPS ] ])
-								asFPS) reciprocal asArray2Drows: size columns: size)
-				equals: pascalMatrix " ]
+								asFPS) asArray2Drows: size columns: size)
+				equals: pascalMatrix" ]
