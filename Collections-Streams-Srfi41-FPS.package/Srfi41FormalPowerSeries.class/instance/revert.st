@@ -2,7 +2,9 @@ accessing
 revert
 	"Theoretically we should ensure that `self assert: self car equals: 0"
 
-	^ [ | Y |
+	| Y |
 	Y := nil.
-	Y := [ self car ] srfi41ConsFPS: [ (self cdr value: Y) reciprocal ] ]
-		srfi41StreamFPS
+	Y := [ self car ]
+		srfi41ConsFPS: [ (self cdr value: Y) reciprocal ]
+		of: self var.
+	^ Y

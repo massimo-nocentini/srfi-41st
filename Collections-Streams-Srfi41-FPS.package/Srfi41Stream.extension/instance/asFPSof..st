@@ -1,5 +1,6 @@
 *Collections-Streams-Srfi41-FPS
-asFPS
+asFPSof: t
 	^ Srfi41FormalPowerSeries new
-		stream: [ self ifEmpty: [ 0 srfi41Repeat ] ] srfi41Stream;
+		var: t;
+		stream: self , 0 srfi41Repeat;
 		yourself

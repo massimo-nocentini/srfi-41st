@@ -1,3 +1,3 @@
 as yet unclassified
 adaptToNumber: anInteger andSend: aString
-	^ anInteger asFPS perform: aString with: self
+	^ (anInteger asFPSof: self var) perform: aString with: self

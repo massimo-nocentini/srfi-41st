@@ -1,14 +1,14 @@
 tests
 testNthRoot
 	self
-		assert: (1 asFPS - (#t asFPS cos ** 2)) sqrt
-		equals: #t asFPS sin
+		assert: (1 - (self t cos ** 2)) sqrt
+		equals: self t sin
 		upto: 30
 		modulo: #asOrderedCollection.
 	self
-		assert: (1 asFPS - (#t asFPS cos ** 2) nthRoot: 3)
+		assert: (1 - (self t cos ** 2) nthRoot: 3)
 		equals:
-			{0.
+			({0.
 			1.
 			0.
 			(-1 / 9).
@@ -37,6 +37,7 @@ testNthRoot
 			0.
 			(-884512589502824 / 3520250068899115889178826359375).
 			0.
-			(-17773957391896 / 787845367846569410972109140625)} asFPS
+			(-17773957391896 / 787845367846569410972109140625)} asSrfi41Stream
+				asFPSof: self t)
 		upto: 30
 		modulo: #asOrderedCollection

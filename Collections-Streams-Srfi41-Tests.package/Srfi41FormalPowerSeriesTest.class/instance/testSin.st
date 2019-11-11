@@ -1,9 +1,9 @@
 tests
 testSin
 	self
-		assert: #t asFPS sin
+		assert: self t sin
 		equals:
-			{0.
+			({0.
 			1.
 			0.
 			(-1 / 6).
@@ -17,6 +17,6 @@ testSin
 			(-1 / 39916800).
 			0.
 			(1 / 6227020800).
-			0} asFPS
+			0} asSrfi41Stream asFPSof: self t)
 		upto: 15
 		modulo: #asOrderedCollection

@@ -1,10 +1,9 @@
 tests
 testArctan
-	| t tan |
-	t := #t asFPS.
-	tan := (1 + (t ** 2)) reciprocal integral revert.
+	| tan |
+	tan := (1 + (self t ** 2)) reciprocal integral revert.
 	self
-		assert: t sin / t cos - tan
-		equals: 0 asFPS
+		assert: self t sin / self t cos - tan
+		equals: (0 asFPSof: self t)
 		upto: 30
 		modulo: #asOrderedCollection

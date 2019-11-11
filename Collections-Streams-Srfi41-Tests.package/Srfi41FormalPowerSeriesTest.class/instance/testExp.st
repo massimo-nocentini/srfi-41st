@@ -1,9 +1,9 @@
 tests
 testExp
 	self
-		assert: #t asFPS exp
+		assert: self t exp
 		equals:
-			{1.
+			({1.
 			1.
 			(1 / 2).
 			(1 / 6).
@@ -16,6 +16,6 @@ testExp
 			(1 / 3628800).
 			(1 / 39916800).
 			(1 / 479001600).
-			(1 / 6227020800)} asFPS
+			(1 / 6227020800)} asSrfi41Stream asFPSof: self t)
 		upto: 14
 		modulo: #asOrderedCollection

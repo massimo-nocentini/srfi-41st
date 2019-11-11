@@ -1,11 +1,11 @@
 tests
 testRevert
 	| G |
-	G := (1 asFPS + (#t asFPS ** 2)) reciprocal integral revert.
+	G := (1 + (self t ** 2)) reciprocal integral revert.
 	self
 		assert: G
 		equals:
-			{0.
+			({0.
 			1.
 			0.
 			(1 / 3).
@@ -34,6 +34,7 @@ testRevert
 			0.
 			(8374643517010684 / 1298054391195577640625).
 			0.
-			(689005380505609448 / 263505041412702261046875)} asFPS
+			(689005380505609448 / 263505041412702261046875)} asSrfi41Stream
+				asFPSof: self t)
 		upto: 30
 		modulo: #asOrderedCollection

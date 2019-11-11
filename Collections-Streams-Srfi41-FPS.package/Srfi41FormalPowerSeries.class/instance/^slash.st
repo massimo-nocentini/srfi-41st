@@ -3,4 +3,4 @@ as yet unclassified
 	^ [ (self car isZero and: [ aSrfi41FormalPowerSeries car isZero ])
 		ifTrue: [ self cdr / aSrfi41FormalPowerSeries cdr ]
 		ifFalse: [ self * aSrfi41FormalPowerSeries reciprocal ] ]
-		srfi41StreamFPS
+		srfi41StreamFPSof: self var

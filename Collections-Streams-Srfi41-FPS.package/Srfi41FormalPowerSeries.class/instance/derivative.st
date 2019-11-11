@@ -1,4 +1,5 @@
 as yet unclassified
 derivative
-	^ [ self cdr elementwiseFPS: 1 srfi41CountForward asFPS do: #* ]
-		srfi41StreamFPS
+	^ [ self cdr
+		elementwiseFPS: (1 srfi41CountForward asFPSof: self var)
+		do: #* ] srfi41StreamFPSof: self var

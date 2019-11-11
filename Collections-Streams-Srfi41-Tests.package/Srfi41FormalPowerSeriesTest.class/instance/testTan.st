@@ -1,9 +1,9 @@
 tests
 testTan
 	self
-		assert: #t asFPS tan
+		assert: self t tan
 		equals:
-			{0.
+			({0.
 			1.
 			0.
 			(1 / 3).
@@ -17,6 +17,6 @@ testTan
 			(1382 / 155925).
 			0.
 			(21844 / 6081075).
-			0} asFPS
+			0} asSrfi41Stream asFPSof: self t)
 		upto: 15
 		modulo: #asOrderedCollection

@@ -1,9 +1,9 @@
 tests
 testCos
 	self
-		assert: #t asFPS cos
+		assert: self t cos
 		equals:
-			{1.
+			({1.
 			0.
 			(-1 / 2).
 			0.
@@ -17,6 +17,6 @@ testCos
 			0.
 			(1 / 479001600).
 			0.
-			(-1 / 87178291200)} asFPS
+			(-1 / 87178291200)} asSrfi41Stream asFPSof: self t)
 		upto: 15
 		modulo: #asOrderedCollection

@@ -3,12 +3,12 @@ testMultiply
 	| nats |
 	nats := Srfi41NumbersSequence naturalsCorecursive.
 	self
-		assert: nats asFPS * 2 asFPS
-		equals: (nats collect: #double) asFPS
+		assert: (2 asFPSof: #t) * (nats asFPSof: #t)
+		equals: ((nats collect: #double) asFPSof: #t)
 		upto: 30
 		modulo: #asOrderedCollection.
 	self
-		assert: 2 asFPS * nats asFPS
-		equals: (nats collect: #double) asFPS
+		assert: (nats asFPSof: #t) * (2 asFPSof: #t)
+		equals: ((nats collect: #double) asFPSof: #t)
 		upto: 30
 		modulo: #asOrderedCollection
