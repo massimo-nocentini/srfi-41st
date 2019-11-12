@@ -3,10 +3,7 @@ testPascal
 	10
 		in: [ :size | 
 			| pascalMatrix |
-			pascalMatrix := Array2D
-				rows: size
-				columns: size
-				tabulate: [ :n :k | n - 1 choose: k - 1 ].
+			pascalMatrix := (size @ size) pascalTriangle.
 			self
 				assert:
 					((1 - ((1 + self t) * self z)) reciprocal
