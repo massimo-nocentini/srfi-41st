@@ -17,6 +17,6 @@ testTan
 			(1382 / 155925).
 			0.
 			(21844 / 6081075).
-			0} asSrfi41Stream asFPSof: self t)
+			0} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

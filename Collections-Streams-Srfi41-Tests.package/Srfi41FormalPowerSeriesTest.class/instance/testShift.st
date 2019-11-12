@@ -1,7 +1,7 @@
 tests
 testShift
 	self
-		assert: (1 asFPSof: #t) >> 3
+		assert: (1 asFPSof: self t var) >> 3
 		equals: self t ** 3
 		upto: 30
 		modulo: #asOrderedCollection.

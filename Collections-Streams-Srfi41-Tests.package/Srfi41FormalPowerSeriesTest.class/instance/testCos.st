@@ -17,6 +17,6 @@ testCos
 			0.
 			(1 / 479001600).
 			0.
-			(-1 / 87178291200)} asSrfi41Stream asFPSof: self t)
+			(-1 / 87178291200)} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

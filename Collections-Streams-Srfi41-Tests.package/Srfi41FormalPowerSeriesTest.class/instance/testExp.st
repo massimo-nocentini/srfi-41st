@@ -16,6 +16,6 @@ testExp
 			(1 / 3628800).
 			(1 / 39916800).
 			(1 / 479001600).
-			(1 / 6227020800)} asSrfi41Stream asFPSof: self t)
+			(1 / 6227020800)} asSrfi41Stream asFPSof: self t var)
 		upto: 14
 		modulo: #asOrderedCollection

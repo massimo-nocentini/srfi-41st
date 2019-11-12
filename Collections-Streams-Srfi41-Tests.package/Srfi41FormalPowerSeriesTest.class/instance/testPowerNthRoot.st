@@ -17,6 +17,6 @@ testPowerNthRoot
 			(2028117 / 524288).
 			(16900975 / 4194304).
 			(35102025 / 8388608).
-			(145422675 / 33554432)} asSrfi41Stream asFPSof: self t)
+			(145422675 / 33554432)} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

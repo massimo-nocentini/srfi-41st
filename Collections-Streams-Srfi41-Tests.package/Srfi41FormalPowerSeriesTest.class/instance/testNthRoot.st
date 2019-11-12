@@ -38,6 +38,6 @@ testNthRoot
 			(-884512589502824 / 3520250068899115889178826359375).
 			0.
 			(-17773957391896 / 787845367846569410972109140625)} asSrfi41Stream
-				asFPSof: self t)
+				asFPSof: self t var)
 		upto: 30
 		modulo: #asOrderedCollection

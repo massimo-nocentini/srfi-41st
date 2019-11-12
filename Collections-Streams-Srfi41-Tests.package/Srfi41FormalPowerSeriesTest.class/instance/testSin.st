@@ -17,6 +17,6 @@ testSin
 			(-1 / 39916800).
 			0.
 			(1 / 6227020800).
-			0} asSrfi41Stream asFPSof: self t)
+			0} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

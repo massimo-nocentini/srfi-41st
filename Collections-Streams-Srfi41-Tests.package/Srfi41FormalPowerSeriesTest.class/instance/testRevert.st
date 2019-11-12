@@ -35,6 +35,6 @@ testRevert
 			(8374643517010684 / 1298054391195577640625).
 			0.
 			(689005380505609448 / 263505041412702261046875)} asSrfi41Stream
-				asFPSof: self t)
+				asFPSof: self t var)
 		upto: 30
 		modulo: #asOrderedCollection

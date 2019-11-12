@@ -18,6 +18,6 @@ testIntegral
 			(-1 / 12).
 			(1 / 13).
 			(-1 / 14).
-			(1 / 15)} asSrfi41Stream asFPSof: self t)
+			(1 / 15)} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection
