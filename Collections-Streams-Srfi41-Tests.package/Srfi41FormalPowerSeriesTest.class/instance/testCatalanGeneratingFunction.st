@@ -1,5 +1,5 @@
 tests
-testCatalanNumbers
+testCatalanGeneratingFunction
 	| catalan |
 	catalan := (1 - (1 - (4 * self t)) sqrt) / (2 * self t).
 	self

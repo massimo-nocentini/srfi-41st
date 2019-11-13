@@ -18,3 +18,5 @@ baseline: spec
 					with: [ spec
 						requires:
 							#('Collections-Streams-Srfi41' 'Collections-Streams-Srfi41-ArithSequences') ] ]
+	"baseline: 'PolyMath'
+			with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ];"
