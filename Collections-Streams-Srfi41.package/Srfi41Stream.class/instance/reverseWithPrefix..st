@@ -3,5 +3,5 @@ reverseWithPrefix: aStream
 	^ [ self
 		ifEmpty: [ aStream ]
 		ifNotEmpty:
-			[ self cdr reverseWithPrefix: ([ self car ] srfi41ConsStream: aStream) ] ]
+			[ self cdr reverseWithPrefix: ([ self car ] srfi41ConsSrfi41Stream: aStream) ] ]
 		srfi41Stream

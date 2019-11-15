@@ -7,6 +7,6 @@ choose: k
 					| withoutCarStream combinationsWithCar |
 					withoutCarStream := cdr select: [ :each | each ~~ car ].
 					combinationsWithCar := (withoutCarStream choose: k - 1)
-						collect: [ :aStream | [ car ] srfi41ConsStream: aStream ].
+						collect: [ :aStream | [ car ] srfi41ConsSrfi41Stream: aStream ].
 					combinationsWithCar , (withoutCarStream choose: k) ]
 				ifEmpty: [ {} asSrfi41Stream ] ] ] srfi41Stream
