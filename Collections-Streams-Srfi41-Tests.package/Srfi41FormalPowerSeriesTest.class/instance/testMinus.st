@@ -1,7 +1,7 @@
 tests
-testMinus 
+testMinus
 	self
-		assert: 3 asFPS - 4 asFPS
-		equals: -1 asFPS
+		assert: (3 asFPSof: self t var) - (4 asFPSof: self t var)
+		equals: (-1 asFPSof: self t var)
 		upto: 30
 		modulo: #asOrderedCollection

@@ -1,3 +1,3 @@
 *Collections-Streams-Srfi41
-srfi41ConsStream: aStream
+srfi41ConsSrfi41Stream: aStream
 	^ Srfi41ValueLink carBlock: self cdrStream: aStream

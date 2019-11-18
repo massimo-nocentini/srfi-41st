@@ -4,5 +4,5 @@ exp
 
 	| Y |
 	Y := nil.
-	Y := [ 1 asFPS + Y integral ] srfi41StreamFPS.
+	Y := [ 1 + Y integral ] srfi41StreamFPSof: self var.
 	^ Y

@@ -1,9 +1,9 @@
 tests
 testPowerNthRoot
 	self
-		assert: (1 asFPS - #t asFPS) reciprocal ** (3 / 2)
+		assert: (1 - self t) reciprocal ** (3 / 2)
 		equals:
-			{1.
+			({1.
 			(3 / 2).
 			(15 / 8).
 			(35 / 16).
@@ -17,6 +17,6 @@ testPowerNthRoot
 			(2028117 / 524288).
 			(16900975 / 4194304).
 			(35102025 / 8388608).
-			(145422675 / 33554432)} asFPS
+			(145422675 / 33554432)} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

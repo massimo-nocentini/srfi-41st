@@ -1,7 +1,7 @@
 tests
 testDerivative
 	self
-		assert: (1 asFPS - #t asFPS) reciprocal derivative
-		equals: ((1 asFPS - #t asFPS) ** 2) reciprocal
+		assert: (1 - self t) reciprocal derivative
+		equals: ((1 - self t) ** 2) reciprocal
 		upto: 15
 		modulo: #asOrderedCollection

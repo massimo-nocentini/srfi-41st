@@ -1,0 +1,3 @@
+tests
+z
+	^ #z asFPS

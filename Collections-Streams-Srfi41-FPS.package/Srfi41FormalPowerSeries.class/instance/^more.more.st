@@ -1,3 +1,3 @@
 as yet unclassified
 >> n
-	^ [ #t asFPS ** n * self ] srfi41StreamFPS
+	^ [ self var asFPS ** n * self ] srfi41StreamFPSof: self var

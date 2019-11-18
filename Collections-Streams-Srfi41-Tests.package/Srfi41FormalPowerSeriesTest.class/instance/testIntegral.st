@@ -1,9 +1,9 @@
 tests
 testIntegral
 	self
-		assert: (1 asFPS + #t asFPS) reciprocal integral
+		assert: (1 + self t) reciprocal integral
 		equals:
-			{0.
+			({0.
 			1.
 			(-1 / 2).
 			(1 / 3).
@@ -18,6 +18,6 @@ testIntegral
 			(-1 / 12).
 			(1 / 13).
 			(-1 / 14).
-			(1 / 15)} asFPS
+			(1 / 15)} asSrfi41Stream asFPSof: self t var)
 		upto: 15
 		modulo: #asOrderedCollection

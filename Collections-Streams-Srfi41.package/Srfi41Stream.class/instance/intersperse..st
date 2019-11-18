@@ -2,8 +2,8 @@ as yet unclassified
 intersperse: x
 	^ [ self
 		ifEmpty: [ x srfi41Singleton srfi41Singleton ]
-		ifNotEmpty: [  ([ x ] srfi41ConsStream: self ) srfi41Singleton
+		ifNotEmpty: [  ([ x ] srfi41ConsSrfi41Stream: self ) srfi41Singleton
 				,
 					((self cdr intersperse: x)
-						collect: [ :z | [ self car ] srfi41ConsStream: z ]) ] ]
+						collect: [ :z | [ self car ] srfi41ConsSrfi41Stream: z ]) ] ]
 		srfi41Stream

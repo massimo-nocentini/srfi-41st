@@ -1,3 +1,3 @@
 as yet unclassified
 negated
-	^ (self stream collect: #negated) asFPS
+	^ (self stream collect: #negated) asFPSof: self var

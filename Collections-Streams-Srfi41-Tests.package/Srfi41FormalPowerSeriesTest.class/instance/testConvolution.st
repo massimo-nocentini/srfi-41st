@@ -1,7 +1,9 @@
 tests
 testConvolution
+	| ones |
+	ones := 1 srfi41Repeat asFPSof: self t var.
 	self
-		assert: 1 srfi41Repeat asFPS * 1 srfi41Repeat asFPS
-		equals: Srfi41NumbersSequence naturalsCorecursive cdr asFPS
+		assert: ones * ones
+		equals: (Srfi41NumbersSequence naturalsCorecursive cdr asFPSof: #t)
 		upto: 30
 		modulo: #asOrderedCollection
