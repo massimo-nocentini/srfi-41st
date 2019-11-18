@@ -61,8 +61,18 @@ This library provides eight operators: constructors for stream-null and stream-p
 
 ""constructor"": ==stream-null==
 Stream-null is a promise that, when forced, is a single object, distinguishable from all other objects, that represents the null stream. Stream-null is immutable and unique.
-Its implementation lies in the message ${method:Srfi41Stream class>>#empty|expanded=}$.
+''The following creates an empty stream'' ${example:Srfi41StreamTest>>#testEmptyStream|previewShow=#gtLiveFor:|noCode=false}$
+
+''Its implementation lies in the message'' ${method:SequenceableCollection>>#asSrfi41Stream|expanded=|height=200}$
 
 ""constructor"": ==(stream-cons object stream)==
-==stream-cons== is a macro that accepts an object and a stream and creates a newly-allocated stream containing a promise that, when forced, is a ==stream-pair== with the object in its ==stream-car== and the stream in its ==stream-cdr==. ''==stream-cons== must be syntactic, not procedural, because neither object nor stream is evaluated when ==stream-cons== is called''. Since stream is not evaluated, when the stream-pair is created, it is not an error to call stream-cons with a stream that is not of type stream; however, doing so will cause an error later when the stream-cdr of the stream-pair is accessed. Once created, a stream-pair is immutable; there is no stream-set-car! or stream-set-cdr! that modifies an existing stream-pair. There is no dotted-pair or improper stream as with lists.
-Its implementation lies in the message ${method:BlockClosure>>#srfi41Cons:|expanded=}$.
+==stream-cons== is a macro that accepts an object and a stream and creates a newly-allocated stream containing a promise that, when forced, is a ==stream-pair== with the object in its ==stream-car== and the stream in its ==stream-cdr==. ''==stream-cons== must be syntactic, not procedural, because neither object nor stream is evaluated when ==stream-cons== is called''. Since stream is not evaluated, when the stream-pair is created, it is not an error to call stream-cons with a stream that is not of type stream; however, doing so will cause an error later when the stream-cdr of the stream-pair is accessed. Once created, a stream-pair is immutable; there is no stream-set-car! or stream-set-cdr! that modifies an existing stream-pair. There is no dotted-pair or improper stream as with lists. ''Its implementation lies in the message'' ${method:BlockClosure>>#srfi41Cons:|expanded=|height=120}$
+
+!!Examples
+
+!!!Backtracking via the stream of successes
+
+Philip Wadler describes the stream of successes technique that uses streams to perform backtracking search. The basic idea is that each procedure returns a stream of possible results, so that its caller can decide which result it wants; an empty stream signals failure, and causes backtracking to a previous choice point. The stream of successes technique is useful because the program is written as if to simply enumerate all possible solutions; no backtracking is explicit in the code.
+
+The Eight Queens puzzle is discussed in
+${icebergFile:path=massimo-nocentini/srfi-41st/pillars/nqueens.pillar}$.
