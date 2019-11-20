@@ -1,8 +1,8 @@
 testing
 flatten
 	^ [ self
-		ifEmpty: [ {} asSrfi41Stream ]
-		ifNotEmpty: [ ((self car isMemberOf: Srfi41Stream)
-				ifTrue: [ self car flatten ]
-				ifFalse: [ self car srfi41Singleton  ]) , self cdr flatten ] ]
-		srfi41Stream
+		ifNotEmpty: [ | carStream |
+			carStream := self car
+				ifSrfi41Stream: [ :aStream | aStream flatten ]
+				ifNotSrfi41Stream: [ :anObj | self car srfi41Singleton ].
+			carStream , self cdr flatten ] ] srfi41Stream

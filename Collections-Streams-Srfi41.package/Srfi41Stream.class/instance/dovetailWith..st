@@ -1,9 +1,12 @@
 as yet unclassified
 dovetailWith: aBlock
 	^ [ self
-		letCarCdr: [  :aStream  :streamOfStreams |
-			aStream
-				ifEmpty: [ streamOfStreams dovetailWith: aBlock ]
-				ifNotEmpty: [ [ aStream car srfi41Singleton ]
-						srfi41Cons: [ aStream cdr zip: (streamOfStreams dovetailWith: aBlock) with: aBlock ] ] ]
-		ifEmpty: [ {} asSrfi41Stream srfi41Repeat ] ] srfi41Stream
+		ifEmpty: [ {} asSrfi41Stream srfi41Repeat ]
+		ifNotEmpty: [ | streamOfStreams |
+			streamOfStreams := self cdr dovetailWith: aBlock.
+			self car
+				ifEmpty: [ streamOfStreams ]
+				ifNotEmpty: [ :aStream | 
+					[ aStream car srfi41Singleton ]
+						srfi41Cons: [ aStream cdr zip: streamOfStreams with: aBlock ] ] ] ]
+		srfi41Stream
