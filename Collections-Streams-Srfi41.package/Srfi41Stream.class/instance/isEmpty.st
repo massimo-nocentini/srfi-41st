@@ -1,3 +1,3 @@
 testing
 isEmpty
-	^ self promise key isEmpty: self
+	^ self isEmptySrfi41Stream

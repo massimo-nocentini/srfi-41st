@@ -8,5 +8,5 @@ testEmptyStream
 	self
 		should: [ [ {} ] srfi41Stream isEmpty ]
 		raise: MessageNotUnderstood.
-	self assert: [ {} asSrfi41Stream ] srfi41Delay isEmpty not.
+	self deny: [ {} asSrfi41Stream ] srfi41Delay isEmpty.
 	^ emptyStream

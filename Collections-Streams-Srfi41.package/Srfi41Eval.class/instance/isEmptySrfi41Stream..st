@@ -1,3 +1,3 @@
 as yet unclassified
-isEmpty: aStream
+isEmptySrfi41Stream: aStream
 	self subclassResponsibility
