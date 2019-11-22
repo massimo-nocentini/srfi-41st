@@ -1,6 +1,7 @@
 as yet unclassified
 nextWhile: aPredicate
 	^ [ self
+		ifEmpty: #yourself
 		ifNotEmpty: [ | car |
 			car := self car.
 			(aPredicate value: car)

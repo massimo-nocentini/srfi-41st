@@ -1,6 +1,7 @@
 as yet unclassified
 concat
 	^ [ self
+		ifEmpty: #yourself
 		ifNotEmpty: [ self car
 				ifEmpty: [ self cdr concat ]
 				ifNotEmpty: [ :carStream | 

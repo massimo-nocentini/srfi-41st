@@ -1,6 +1,7 @@
 testing
 flatten
 	^ [ self
+		ifEmpty: #yourself
 		ifNotEmpty: [ | carStream |
 			carStream := self car
 				ifSrfi41Stream: [ :aStream | aStream flatten ]

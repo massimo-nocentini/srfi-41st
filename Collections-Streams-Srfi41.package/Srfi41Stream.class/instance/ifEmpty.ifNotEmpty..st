@@ -1,5 +1,5 @@
 testing
 ifEmpty: eBlock ifNotEmpty: neBlock
-	^ self isEmptyStream
-		ifTrue: eBlock
+	^ self isEmpty
+		ifTrue: [ eBlock cull: self ]
 		ifFalse: [ neBlock cull: self ]

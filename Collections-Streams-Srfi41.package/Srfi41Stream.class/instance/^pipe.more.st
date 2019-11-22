@@ -1,3 +1,3 @@
 as yet unclassified
 |> aBlock
-	^ [ self collect: [ :tuple | aBlock valueWithArguments: tuple ] ] srfi41Stream
+	^ self collect: [ :tuple | aBlock valueWithArguments: tuple ]

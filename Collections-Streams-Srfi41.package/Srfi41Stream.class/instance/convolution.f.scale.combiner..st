@@ -1,6 +1,6 @@
 as yet unclassified
 convolution: aStream f: fBlock scale: sBlock combiner: cBlock
-	^ [ (self isEmptyStream or: [ aStream isEmptyStream ])
+	^ [ (self isEmpty or: [ aStream isEmpty ])
 		ifTrue: [ {} asSrfi41Stream ]
 		ifFalse: [ [ fBlock value: self car value: aStream car ]
 				srfi41Cons: [ cBlock

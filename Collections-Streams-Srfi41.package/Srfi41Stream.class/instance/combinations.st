@@ -1,10 +1,11 @@
 accessing
 combinations
 	^ [ self
-		letCarCdr: [ :car :cdr | 
-			| withoutCarStream combinationsWithCar |
-			withoutCarStream := cdr select: [ :each | each ~~ car ].
+		ifEmpty: [ {} asSrfi41Stream srfi41Singleton ]
+		ifNotEmpty: [ | car withoutCarStream combinationsWithCar |
+			car := self car.
+			withoutCarStream := self cdr select: [ :each | each ~~ car ].
 			combinationsWithCar := withoutCarStream combinations
 				collect: [ :aStream | [ car ] srfi41ConsSrfi41Stream: aStream ].
-			combinationsWithCar , withoutCarStream combinations ]
-		ifEmpty: [ {} asSrfi41Stream srfi41Singleton ] ] srfi41Stream
+			combinationsWithCar , withoutCarStream combinations ] ]
+		srfi41Stream

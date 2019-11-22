@@ -3,10 +3,10 @@ testEmptyStream
 	<gtExample>
 	| emptyStream |
 	emptyStream := {} asSrfi41Stream.
-	self assert: emptyStream isEmptyStream.
-	self assert: [ {} asSrfi41Stream ] srfi41Stream isEmptyStream.
+	self assert: emptyStream isEmpty.
+	self assert: [ {} asSrfi41Stream ] srfi41Stream isEmpty.
 	self
-		should: [ [ {} ] srfi41Stream isEmptyStream ]
+		should: [ [ {} ] srfi41Stream isEmpty ]
 		raise: MessageNotUnderstood.
-	self assert: [ {} asSrfi41Stream ] srfi41Delay isEmptyStream not.
+	self assert: [ {} asSrfi41Stream ] srfi41Delay isEmpty not.
 	^ emptyStream

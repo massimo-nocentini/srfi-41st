@@ -1,6 +1,7 @@
 as yet unclassified
 crossProduct
 	^ [ self
+		ifEmpty: #yourself
 		ifNotEmpty: [ | aStream |
 			aStream := self car.
 			self cdr

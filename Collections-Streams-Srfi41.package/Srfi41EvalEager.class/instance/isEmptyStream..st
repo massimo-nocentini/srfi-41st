@@ -1,3 +1,0 @@
-testing
-isEmptyStream: aStream
-^ false

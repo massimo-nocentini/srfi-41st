@@ -1,3 +1,3 @@
 as yet unclassified
-isEmptyStream: aStream
+isEmpty: aStream
 	self subclassResponsibility
