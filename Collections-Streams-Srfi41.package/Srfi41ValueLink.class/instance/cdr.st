@@ -1,3 +1,0 @@
-testing
-cdr
-	^ self nextLink 
