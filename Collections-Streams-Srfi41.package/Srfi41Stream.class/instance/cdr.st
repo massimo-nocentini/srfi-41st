@@ -1,3 +1,3 @@
 testing
 cdr
-	^ self force cdr
+	^ self force cdrParentSrfi41Stream: self
