@@ -4,8 +4,9 @@ force
 	content := self promise.
 	content key
 		ifEager: [ ^ content value ]
-		ifLazy: [ | promise_star freshContent |
-			promise_star := content value value.
+		ifLazy: [ | aBlock promise_star freshContent |
+			aBlock := content value.
+			promise_star := aBlock value.
 			freshContent := self promise.
 			freshContent key
 				ifEager: [ "noop" ]

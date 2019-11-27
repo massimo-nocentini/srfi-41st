@@ -1,4 +1,3 @@
 as yet unclassified
-ifEager: eBlock
-		ifLazy: lBlock
-		self subclassResponsibility 
+ifEager: eBlock ifLazy: lBlock
+	self subclassResponsibility

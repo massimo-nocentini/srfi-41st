@@ -1,3 +1,3 @@
 testing
 car
-	^ self force car force
+	^ (self force carSrfi41Stream: self) force

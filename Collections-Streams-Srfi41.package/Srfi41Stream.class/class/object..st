@@ -1,5 +1,3 @@
 accessing
 object: anObject
-	^ self new
-		promise: Srfi41EvalEager new -> anObject;
-		yourself
+	^ self tagClass: Srfi41EvalEager value: anObject

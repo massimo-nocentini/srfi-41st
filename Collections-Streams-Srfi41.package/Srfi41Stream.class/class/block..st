@@ -1,5 +1,3 @@
 accessing
 block: aBlock
-	^ self new
-		promise: Srfi41EvalLazy new -> aBlock;
-		yourself
+	^ self tagClass: Srfi41EvalLazy value: aBlock

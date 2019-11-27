@@ -1,5 +1,3 @@
 accessing
 empty
-	^ self new
-		promise: Srfi41EvalNil new -> nil;
-		yourself
+	^ self tagClass: Srfi41EvalNil value: nil
