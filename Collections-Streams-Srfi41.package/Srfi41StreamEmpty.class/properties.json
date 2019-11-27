@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Srfi41EvalEager",
+	"super" : "Object",
 	"category" : "Collections-Streams-Srfi41",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "Srfi41EvalNil",
+	"name" : "Srfi41StreamEmpty",
 	"type" : "normal"
 }

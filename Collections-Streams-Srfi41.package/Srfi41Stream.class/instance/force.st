@@ -7,10 +7,11 @@ force
 		ifLazy: [ | promise_star freshContent |
 			promise_star := content value value.
 			freshContent := self promise.
-			freshContent key
+			freshContent key 
 				ifEager: [ "noop" ]
 				ifLazy: [ | freshPromise |
 					freshPromise := promise_star promise.
 					freshContent
 						key: freshPromise key;
-						value: freshPromise value ] ] ] repeat
+						value: freshPromise value.
+					promise_star promise: freshContent ] ] ] repeat
