@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"stream"
+	],
 	"name" : "Srfi41ValueLink",
 	"type" : "normal"
 }
