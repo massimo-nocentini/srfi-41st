@@ -4,8 +4,7 @@ dovetailCounterClockwise
 	sentinel := Object new.
 	suffix := sentinel srfi41Repeat.
 	diagonals := (self collect: [ :aStream | aStream , suffix ])
-		dovetailWith: [ :car :cdr | cdr , car srfi41Singleton ]
-		anObjectHasBeenSeen: false.
+		dovetailWith: [ :car :cdr | cdr , car srfi41Singleton ].
 	(diagonals
 		collect: [ :aStream | aStream select: [ :each | each ~~ sentinel ] ])
 		nextWhile: [ :aStream | (aStream allSatisfy: [ :each | each == sentinel ]) not ] ]
