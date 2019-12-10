@@ -2,7 +2,7 @@
 >>~ aStream
 	^ [ aStream
 			ifEmpty: #yourself
-			ifNotEmpty: [ [ self value: aStream car ] srfi41Stream + (self >>= aStream cdr) ] ]
+			ifNotEmpty: [ [ self value: aStream car ] srfi41Stream + (self >>~ aStream cdr) ] ]
 		srfi41Stream
 
 	"	^ (aStream collect: self) dovetailCounterClockwise concat"

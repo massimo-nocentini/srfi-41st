@@ -4,5 +4,5 @@ gtInspectorPromisesViewIn: composite
 	^ composite roassal2
 		  title: 'Promises';
 		  initializeView: [ RTMondrian new ];
-		  painting: [ :b | self gtInspectorPromisesInMondrianView: b ];
+		  painting: [ :b | self gtInspectorContentInMondrianView: b ];
 		  yourself
