@@ -1,5 +1,7 @@
 tests
 testNthRootsOfUnity
+	self
+		skip: 'In order to run this test the PolyMath project is required.'.
 	10
 		in: [ :n | 
 			self
