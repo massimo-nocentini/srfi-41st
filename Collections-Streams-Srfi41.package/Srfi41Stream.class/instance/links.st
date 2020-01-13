@@ -1,4 +1,4 @@
-testing
+to remove as soon as possible
 links
 	^ self promise
 		  ifEager: [ :aValue | 

@@ -1,6 +1,6 @@
-as yet unclassified
+*Collections-Streams-Srfi41
 carBlock: aBlock cdrStream: aStream
-	^ Srfi41ValueLink new
+	^ self new
 		value: aBlock srfi41Delay;
-		nextLink: aStream ;
+		nextLink: aStream;
 		srfi41Stream

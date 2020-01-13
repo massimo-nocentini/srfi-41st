@@ -1,4 +1,4 @@
-testing
+to remove as soon as possible
 promises
 	^ self promise
 		  ifEager: [ :aValue | 
