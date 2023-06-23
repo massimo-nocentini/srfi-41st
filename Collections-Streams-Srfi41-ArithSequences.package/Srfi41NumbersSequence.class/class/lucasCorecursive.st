@@ -1,3 +1,0 @@
-operations
-lucasCorecursive
-	^ Srfi41NumbersSequenceLucasCorecursive new value

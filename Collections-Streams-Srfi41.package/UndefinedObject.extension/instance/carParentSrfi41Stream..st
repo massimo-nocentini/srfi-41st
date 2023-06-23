@@ -1,3 +1,0 @@
-*Collections-Streams-Srfi41
-carParentSrfi41Stream: aSrfi41Stream
-	self shouldNotImplement

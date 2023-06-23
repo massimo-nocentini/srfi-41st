@@ -1,3 +1,0 @@
-operations
-naturalsIterative
-	^ Srfi41NumbersSequenceNaturalsIterative  new value

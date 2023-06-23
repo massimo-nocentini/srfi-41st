@@ -1,3 +1,0 @@
-operations
-nthRootsOfUnity
-	^ Srfi41NumbersSequenceNthRootsOfUnity new value

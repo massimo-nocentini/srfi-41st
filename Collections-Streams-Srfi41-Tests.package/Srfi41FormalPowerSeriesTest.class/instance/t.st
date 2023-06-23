@@ -1,3 +1,0 @@
-tests
-t
-	^ #t asFPS

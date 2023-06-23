@@ -1,3 +1,0 @@
-evaluating
-definition
-	self subclassResponsibility
