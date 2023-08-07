@@ -4,13 +4,6 @@ Class {
 	#category : #'Collections-Streams-Srfi41-SICP'
 }
 
-{ #category : #converting }
-Srfi41SICPEmptyStream >> appendIntoOrderedCollection: collection [
-	"Being a method without code allows me to stop the recursion"
-
-	
-]
-
 { #category : #enumerating }
 Srfi41SICPEmptyStream >> collect: block [
 
@@ -27,6 +20,13 @@ Srfi41SICPEmptyStream >> head [
 Srfi41SICPEmptyStream >> head: anObject [
 
 	^ Srfi41SICPStream head: anObject tail: [ self ]
+]
+
+{ #category : #converting }
+Srfi41SICPEmptyStream >> putOnStream: collection [
+	"Being a method without code allows me to stop the recursion"
+
+	
 ]
 
 { #category : #accessing }

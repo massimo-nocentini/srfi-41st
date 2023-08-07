@@ -20,6 +20,12 @@ Srfi41SICPStream class >> empty [
 { #category : #'as yet unclassified' }
 Srfi41SICPStream class >> head: head tail: valuable [
 
+	^ self head: head tailWithWholeStream: [ :stream | valuable value ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> head: head tailWithWholeStream: valuable [
+
 	^ self new
 		  head: head;
 		  tail: valuable;
@@ -33,22 +39,9 @@ Srfi41SICPStream class >> initialize [
 ]
 
 { #category : #converting }
-Srfi41SICPStream >> appendIntoOrderedCollection: collection [
+Srfi41SICPStream >> asArray [
 
-	collection add: self head.
-
-	self tail appendIntoOrderedCollection: collection
-]
-
-{ #category : #converting }
-Srfi41SICPStream >> asOrderedCollection [
-
-	| collection |
-	collection := OrderedCollection new.
-
-	self appendIntoOrderedCollection: collection.
-
-	^ collection
+	^ Array streamContents: [ :stream | self putOnStream: stream ]
 ]
 
 { #category : #enumerating }
@@ -71,10 +64,18 @@ Srfi41SICPStream >> head: anObject [
 	head := anObject
 ]
 
+{ #category : #converting }
+Srfi41SICPStream >> putOnStream: aStream [
+
+	aStream nextPut: self head.
+
+	self tail putOnStream: aStream
+]
+
 { #category : #accessing }
 Srfi41SICPStream >> tail [
 
-	^ tail value
+	^ tail valueFor: self
 ]
 
 { #category : #accessing }
