@@ -46,3 +46,9 @@ Srfi41SICPEmptyStream >> take: size [
 
 	^ self
 ]
+
+{ #category : #accessing }
+Srfi41SICPEmptyStream >> zip: stream with: block [
+
+	^ self
+]
