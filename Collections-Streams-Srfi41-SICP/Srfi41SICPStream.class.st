@@ -20,15 +20,11 @@ Srfi41SICPStream class >> empty [
 { #category : #'as yet unclassified' }
 Srfi41SICPStream class >> head: head tail: valuable [
 
-	^ self head: head tailWithWholeStream: [ :stream | valuable value ]
-]
-
-{ #category : #'as yet unclassified' }
-Srfi41SICPStream class >> head: head tailWithWholeStream: valuable [
-
 	^ self new
 		  head: head;
-		  tail: valuable;
+		  tail: (valuable numArgs = 1
+				   ifTrue: [ valuable ]
+				   ifFalse: [ [ :stream | valuable value ] ]);
 		  yourself
 ]
 
