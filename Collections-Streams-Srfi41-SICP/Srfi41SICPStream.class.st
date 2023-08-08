@@ -11,6 +11,18 @@ Class {
 	#category : #'Collections-Streams-Srfi41-SICP'
 }
 
+{ #category : #accessing }
+Srfi41SICPStream class >> collect: block init: init [
+
+	^ self head: init tail: [ :stream | stream collect: block ]
+]
+
+{ #category : #accessing }
+Srfi41SICPStream class >> constant: k [
+
+	^ self head: k tail: [ :stream | stream ]
+]
+
 { #category : #requirements }
 Srfi41SICPStream class >> empty [
 
@@ -32,6 +44,29 @@ Srfi41SICPStream class >> head: head tail: valuable [
 Srfi41SICPStream class >> initialize [
 
 	EmptyStream := Srfi41SICPEmptyStream new
+]
+
+{ #category : #accessing }
+Srfi41SICPStream class >> naturals [
+
+	^ self collect: [ :each | each + 1 ] init: 0
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> * another [
+
+	| h |
+	h := self head.
+
+	^ self class head: h * another head tail: [
+		  (another tail collect: [ :each | h * each ])
+		  + (self tail * another) ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> + another [
+
+	^ self zip: another with: [ :r :s | r + s ]
 ]
 
 { #category : #converting }
@@ -66,6 +101,13 @@ Srfi41SICPStream >> putOnStream: aStream [
 	aStream nextPut: self head.
 
 	self tail putOnStream: aStream
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> reciprocal [
+
+	^ self class head: self head tail: [ :reciprocal |
+		  self tail * reciprocal collect: [ :each | each negated ] ]
 ]
 
 { #category : #accessing }
