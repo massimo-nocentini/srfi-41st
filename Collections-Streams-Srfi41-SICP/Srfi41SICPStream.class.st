@@ -149,6 +149,29 @@ Srfi41SICPStream >> integrate [
 	^ self zip: self class naturals tail with: [ :s :i | s / i ]
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> montecarlo: predicate [
+
+	^ self montecarlo: predicate successes: 0 failures: 0
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
+
+	| ss ff |
+	ss := s.
+	ff := f.
+
+	(predicate value: self head)
+		ifTrue: [ ss := ss + 1 ]
+		ifFalse: [ ff := ff + 1 ].
+
+	^ self class
+		  head: ss / (ss + ff)
+		  tail: [
+		  self tail montecarlo: predicate successes: ss failures: ff ]
+]
+
 { #category : #arithmetic }
 Srfi41SICPStream >> negated [
 
