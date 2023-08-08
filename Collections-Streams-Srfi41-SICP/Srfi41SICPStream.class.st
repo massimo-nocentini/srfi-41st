@@ -85,9 +85,12 @@ Srfi41SICPStream >> tail: valuable [
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> take: size [
 
-	^ self class head: self head tail: (size == 1
-			   ifTrue: [ [ EmptyStream ] ]
-			   ifFalse: [ [ self tail take: size - 1 ] ])
+	^ size > 0
+		  ifTrue: [
+			  self class head: self head tail: (size == 1
+					   ifTrue: [ [ self class empty ] ]
+					   ifFalse: [ [ self tail take: size - 1 ] ]) ]
+		  ifFalse: [ self class empty ]
 ]
 
 { #category : #combinators }
