@@ -106,8 +106,15 @@ Srfi41SICPStream >> putOnStream: aStream [
 { #category : #arithmetic }
 Srfi41SICPStream >> reciprocal [
 
-	^ self class head: self head tail: [ :reciprocal |
-		  self tail * reciprocal collect: [ :each | each negated ] ]
+	^ self reciprocal: 1
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> reciprocal: unit [
+
+	^ self class head: unit / self head tail: [ :reciprocal |
+		  self tail * reciprocal collect: [ :each |
+			  each negated / self head ] ]
 ]
 
 { #category : #accessing }
