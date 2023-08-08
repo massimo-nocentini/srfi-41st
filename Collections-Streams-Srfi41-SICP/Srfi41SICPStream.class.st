@@ -117,6 +117,32 @@ Srfi41SICPStream >> << factor [
 	^ self collect: [ :each | each * factor ]
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> adjacentOverlappingPairs [
+
+	| rest |
+	rest := self tail.
+
+	^ self class
+		  head: {
+				  self head.
+				  rest head }
+		  tail: [ rest adjacentOverlappingPairs ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> adjacentPairs [
+
+	| rest |
+	rest := self tail.
+
+	^ self class
+		  head: {
+				  self head.
+				  rest head }
+		  tail: [ rest tail adjacentPairs ]
+]
+
 { #category : #converting }
 Srfi41SICPStream >> asArray [
 
