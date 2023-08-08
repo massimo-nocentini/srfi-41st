@@ -30,6 +30,18 @@ Srfi41SICPStream class >> empty [
 ]
 
 { #category : #'as yet unclassified' }
+Srfi41SICPStream class >> exponential [
+
+	^ self exponential: 1
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> exponential: unit [
+
+	^ self head: unit tail: [ :exp | exp integrate ]
+]
+
+{ #category : #'as yet unclassified' }
 Srfi41SICPStream class >> head: head tail: valuable [
 
 	^ self new
@@ -69,6 +81,12 @@ Srfi41SICPStream >> + another [
 	^ self zip: another with: [ :r :s | r + s ]
 ]
 
+{ #category : #arithmetic }
+Srfi41SICPStream >> << factor [
+
+	^ self collect: [ :each | each * factor ]
+]
+
 { #category : #converting }
 Srfi41SICPStream >> asArray [
 
@@ -95,6 +113,19 @@ Srfi41SICPStream >> head: anObject [
 	head := anObject
 ]
 
+{ #category : #arithmetic }
+Srfi41SICPStream >> integrate [
+
+	^ self zip: self class naturals tail with: [ :s :i | s / i ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> integrate: constant [
+
+	^ self class head: constant tail: [ :integral |
+		  self zip: self class naturals tail with: [ :s :i | s / i ] ]
+]
+
 { #category : #converting }
 Srfi41SICPStream >> putOnStream: aStream [
 
@@ -113,8 +144,7 @@ Srfi41SICPStream >> reciprocal [
 Srfi41SICPStream >> reciprocal: unit [
 
 	^ self class head: unit / self head tail: [ :reciprocal |
-		  self tail * reciprocal collect: [ :each |
-			  each negated / self head ] ]
+		  self tail * reciprocal << self head reciprocal negated ]
 ]
 
 { #category : #accessing }
@@ -136,9 +166,12 @@ Srfi41SICPStream >> take: size [
 
 	^ size > 0
 		  ifTrue: [
-			  self class head: self head tail: (size == 1
-					   ifTrue: [ [ self class empty ] ]
-					   ifFalse: [ [ self tail take: size - 1 ] ]) ]
+			  | block |
+			  block := size == 1
+				           ifTrue: [ [ self class empty ] ]
+				           ifFalse: [ [ self tail take: size - 1 ] ].
+
+			  self class head: self head tail: block ]
 		  ifFalse: [ self class empty ]
 ]
 
