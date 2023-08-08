@@ -10,6 +10,12 @@ Class {
 	#category : #'Collections-Streams-Srfi41-SICP'
 }
 
+{ #category : #visiting }
+Srfi41UnitValuableMemoizer >> acceptSlotDescriptorsVisitor: visitor [
+
+	^ visitor visitSrfi41UnitValuableMemoizer: self
+]
+
 { #category : #evaluating }
 Srfi41UnitValuableMemoizer >> evaluating: block for: client [
 
@@ -25,6 +31,12 @@ Srfi41UnitValuableMemoizer >> evaluating: block for: client [
 	^ ret
 ]
 
+{ #category : #accessing }
+Srfi41UnitValuableMemoizer >> hasBeenEvaluated [
+
+	^ hasBeenEvaluated
+]
+
 { #category : #initialization }
 Srfi41UnitValuableMemoizer >> initialize [
 
@@ -32,6 +44,12 @@ Srfi41UnitValuableMemoizer >> initialize [
 
 	hasBeenEvaluated := false.
 	evaluating := false
+]
+
+{ #category : #accessing }
+Srfi41UnitValuableMemoizer >> valuable [
+
+	^ valuable
 ]
 
 { #category : #accessing }
@@ -43,16 +61,19 @@ Srfi41UnitValuableMemoizer >> valuable: anObject [
 { #category : #evaluating }
 Srfi41UnitValuableMemoizer >> value [
 
-	^ self valueFor: nil
+	^ self hasBeenEvaluated
+		  ifTrue: [ value ]
+		  ifFalse: [
+		  Error signal: 'Not evaluated yet: please send `#valueFor:` to me.' ]
 ]
 
 { #category : #evaluating }
 Srfi41UnitValuableMemoizer >> valueFor: client [
 
-	hasBeenEvaluated ifFalse: [
+	self hasBeenEvaluated ifFalse: [
 		value := self evaluating: valuable for: client.
 
 		hasBeenEvaluated := true ].
 
-	^ value
+	^ self value
 ]
