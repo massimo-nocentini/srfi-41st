@@ -23,6 +23,12 @@ Srfi41SICPStream class >> constant: k [
 	^ self head: k tail: [ :stream | stream ]
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> cos [
+
+	^ self head: 1 tail: [ self sin negated integrate ]
+]
+
 { #category : #requirements }
 Srfi41SICPStream class >> empty [
 
@@ -64,6 +70,18 @@ Srfi41SICPStream class >> naturals [
 	^ self collect: [ :each | each + 1 ] init: 0
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> sin [
+
+	^ self head: 0 tail: [ self cos integrate ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> tan [
+
+	^ self sin / self cos
+]
+
 { #category : #arithmetic }
 Srfi41SICPStream >> * another [
 
@@ -79,6 +97,18 @@ Srfi41SICPStream >> * another [
 Srfi41SICPStream >> + another [
 
 	^ self zip: another with: [ :r :s | r + s ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> - another [
+
+	^ self zip: another with: [ :r :s | r - s ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> / another [
+
+	^ self * another reciprocal
 ]
 
 { #category : #arithmetic }
@@ -120,10 +150,9 @@ Srfi41SICPStream >> integrate [
 ]
 
 { #category : #arithmetic }
-Srfi41SICPStream >> integrate: constant [
+Srfi41SICPStream >> negated [
 
-	^ self class head: constant tail: [ :integral |
-		  self zip: self class naturals tail with: [ :s :i | s / i ] ]
+	^ self collect: #negated
 ]
 
 { #category : #converting }
