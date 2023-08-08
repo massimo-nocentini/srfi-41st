@@ -47,12 +47,6 @@ Srfi41UnitValuableMemoizer >> initialize [
 ]
 
 { #category : #accessing }
-Srfi41UnitValuableMemoizer >> valuable [
-
-	^ valuable
-]
-
-{ #category : #accessing }
 Srfi41UnitValuableMemoizer >> valuable: anObject [
 
 	valuable := anObject
@@ -63,8 +57,7 @@ Srfi41UnitValuableMemoizer >> value [
 
 	^ self hasBeenEvaluated
 		  ifTrue: [ value ]
-		  ifFalse: [
-		  Error signal: 'Not evaluated yet: please send `#valueFor:` to me.' ]
+		  ifFalse: [ valuable ]
 ]
 
 { #category : #evaluating }
