@@ -12,6 +12,15 @@ Class {
 }
 
 { #category : #accessing }
+Srfi41SICPStream class >> cesaro [
+
+	^ ((self random: (RandomInteger new
+			     atMost: 1000000;
+			     yourself)) tuplesOfSize: 2 overlapping: false) collect: [
+		  :pair | (pair first gcd: pair second) = 1 ]
+]
+
+{ #category : #accessing }
 Srfi41SICPStream class >> collect: block init: init [
 
 	^ self head: init tail: [ :stream | stream collect: block ]
@@ -70,6 +79,14 @@ Srfi41SICPStream class >> naturals [
 	^ self collect: [ :each | each + 1 ] init: 0
 ]
 
+{ #category : #accessing }
+Srfi41SICPStream class >> random: random [
+
+	^ self
+		  head: random next
+		  tail: [ :stream | stream collect: [ :each | random next ] ]
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPStream class >> sin [
 
@@ -85,12 +102,7 @@ Srfi41SICPStream class >> tan [
 { #category : #arithmetic }
 Srfi41SICPStream >> * another [
 
-	| h |
-	h := self head.
-
-	^ self class head: h * another head tail: [
-		  (another tail collect: [ :each | h * each ])
-		  + (self tail * another) ]
+	^ another multiplyFrom: self
 ]
 
 { #category : #arithmetic }
@@ -111,36 +123,16 @@ Srfi41SICPStream >> / another [
 	^ self * another reciprocal
 ]
 
-{ #category : #arithmetic }
-Srfi41SICPStream >> << factor [
-
-	^ self collect: [ :each | each * factor ]
-]
-
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> adjacentOverlappingPairs [
 
-	| rest |
-	rest := self tail.
-
-	^ self class
-		  head: {
-				  self head.
-				  rest head }
-		  tail: [ rest adjacentOverlappingPairs ]
+	^ self tuplesOfSize: 2 overlapping: true
 ]
 
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> adjacentPairs [
 
-	| rest |
-	rest := self tail.
-
-	^ self class
-		  head: {
-				  self head.
-				  rest head }
-		  tail: [ rest tail adjacentPairs ]
+	^ self tuplesOfSize: 2 overlapping: false
 ]
 
 { #category : #converting }
@@ -176,6 +168,12 @@ Srfi41SICPStream >> integrate [
 ]
 
 { #category : #'as yet unclassified' }
+Srfi41SICPStream >> montecarlo [
+
+	^ self montecarlo: [ :each | true = each ]
+]
+
+{ #category : #'as yet unclassified' }
 Srfi41SICPStream >> montecarlo: predicate [
 
 	^ self montecarlo: predicate successes: 0 failures: 0
@@ -196,6 +194,29 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 		  head: ss / (ss + ff)
 		  tail: [
 		  self tail montecarlo: predicate successes: ss failures: ff ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> multiplyFrom: client [
+
+	^ client multiply_Srfi41SICPStream: self
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> multiply_Number: factor [
+
+	^ self collect: [ :each | each * factor ]
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> multiply_Srfi41SICPStream: another [
+
+	| h |
+	h := self head.
+
+	^ self class head: h * another head tail: [
+		  (another tail collect: [ :each | h * each ])
+		  + (self tail * another) ]
 ]
 
 { #category : #arithmetic }
@@ -221,8 +242,10 @@ Srfi41SICPStream >> reciprocal [
 { #category : #arithmetic }
 Srfi41SICPStream >> reciprocal: unit [
 
-	^ self class head: unit / self head tail: [ :reciprocal |
-		  self tail * reciprocal << self head reciprocal negated ]
+	^ self class
+		  head: unit / self head
+		  tail: [ :reciprocal |
+		  self tail * reciprocal * self head reciprocal negated ]
 ]
 
 { #category : #accessing }
@@ -251,6 +274,31 @@ Srfi41SICPStream >> take: size [
 
 			  self class head: self head tail: block ]
 		  ifFalse: [ self class empty ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> tuplesOfSize: size overlapping: shouldOverlap [
+
+	^ size > 0
+		  ifTrue: [
+			  | rest tuple |
+			  tuple := Array new: size.
+
+			  rest := self.
+
+			  1 to: size - 1 do: [ :i |
+				  tuple at: i put: rest head.
+				  rest := rest tail ].
+
+			  tuple at: size put: rest head.
+
+			  self class head: tuple tail: [
+				  (shouldOverlap
+					   ifTrue: [ self ]
+					   ifFalse: [ rest ]) tail
+					  tuplesOfSize: size
+					  overlapping: shouldOverlap ] ]
+		  ifFalse: [ self class constant: {  } ]
 ]
 
 { #category : #combinators }
