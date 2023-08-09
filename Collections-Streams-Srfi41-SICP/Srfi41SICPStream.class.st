@@ -14,10 +14,10 @@ Class {
 { #category : #accessing }
 Srfi41SICPStream class >> cesaro [
 
-	^ ((self random: (RandomInteger new
-			     atMost: 1000000;
-			     yourself)) tuplesOfSize: 2 overlapping: false) collect: [
-		  :pair | (pair first gcd: pair second) = 1 ]
+	^ ((RandomInteger new
+		    atMost: 1000000;
+		    asSrfi41SICPStream) tuplesOfSize: 2 overlapping: false)
+		  collect: [ :pair | (pair first gcd: pair second) = 1 ]
 ]
 
 { #category : #accessing }
@@ -246,6 +246,18 @@ Srfi41SICPStream >> reciprocal: unit [
 		  head: unit / self head
 		  tail: [ :reciprocal |
 		  self tail * reciprocal * self head reciprocal negated ]
+]
+
+{ #category : #enumerating }
+Srfi41SICPStream >> select: predicate [
+
+	| h |
+	h := self head.
+
+	^ (predicate value: h)
+		  ifTrue: [
+		  self class head: h tail: [ self tail select: predicate ] ]
+		  ifFalse: [ self tail select: predicate ]
 ]
 
 { #category : #accessing }
