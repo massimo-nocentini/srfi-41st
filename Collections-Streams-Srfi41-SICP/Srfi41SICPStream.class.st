@@ -14,15 +14,10 @@ Class {
 { #category : #accessing }
 Srfi41SICPStream class >> cesaro [
 
-	^ self cesaro: Character maxVal
-]
-
-{ #category : #accessing }
-Srfi41SICPStream class >> cesaro: atMost [
-
-	^ (RandomInteger new
-		   atMost: atMost;
-		   asSrfi41SICPStream) adjacentPairs collect: [ :pair |
+	^ (self random: (RandomInteger new
+			    atLeast: 2;
+			    atMost: Character maxVal;
+			    yourself)) adjacentPairs collect: [ :pair |
 		  (pair first gcd: pair second) = 1 ]
 ]
 
