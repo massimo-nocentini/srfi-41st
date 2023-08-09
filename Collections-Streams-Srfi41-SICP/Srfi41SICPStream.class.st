@@ -111,7 +111,12 @@ Srfi41SICPStream class >> tan [
 { #category : #multiply }
 Srfi41SICPStream >> * another [
 
-	^ another multiplyFrom: self
+	| h |
+	h := self head.
+
+	^ self class head: h * another head tail: [
+		  (another tail collect: [ :each | h * each ])
+		  + (self tail * another) ]
 ]
 
 { #category : #arithmetic }
@@ -136,14 +141,6 @@ Srfi41SICPStream >> / another [
 Srfi41SICPStream >> accelerate: block [
 
 	^ (self tableau: block) collect: [ :stream | stream head ]
-]
-
-{ #category : #arithmetic }
-Srfi41SICPStream >> adaptToNumber: aNumber andSend: aSelector [
-
-	^ (self class constant: aNumber)
-		  zip: self
-		  with: [ :a :b | a perform: aSelector with: b ]
 ]
 
 { #category : #tupling }
@@ -219,33 +216,29 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 		  self tail montecarlo: predicate successes: ss failures: ff ]
 ]
 
-{ #category : #multiply }
-Srfi41SICPStream >> multiplyFrom: client [
-
-	^ client multiply_Srfi41SICPStream: self
-]
-
-{ #category : #multiply }
-Srfi41SICPStream >> multiply_Number: factor [
-
-	^ self collect: [ :each | each * factor ]
-]
-
-{ #category : #multiply }
-Srfi41SICPStream >> multiply_Srfi41SICPStream: another [
-
-	| h |
-	h := self head.
-
-	^ self class
-		  head: h * another head
-		  tail: [ h * another tail + (self tail * another) ]
-]
-
 { #category : #arithmetic }
 Srfi41SICPStream >> negated [
 
 	^ self collect: #negated
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> partial: block [
+
+	^ self class
+		  head: self head
+		  tail: [ self tail partial: block init: self head ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> partial: block init: init [
+
+	| stream |
+	stream := self
+		          zip: (self class head: init tail: [ stream ])
+		          with: block.
+
+	^ stream
 ]
 
 { #category : #converting }
@@ -265,10 +258,9 @@ Srfi41SICPStream >> reciprocal [
 { #category : #arithmetic }
 Srfi41SICPStream >> reciprocal: unit [
 
-	^ self class
-		  head: unit / self head
-		  tail: [ :reciprocal |
-		  self tail * reciprocal * self head reciprocal negated ]
+	^ self class head: unit / self head tail: [ :reciprocal |
+		  self tail * reciprocal collect: [ :each |
+			  each negated / self head ] ]
 ]
 
 { #category : #enumerating }
