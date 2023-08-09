@@ -317,6 +317,12 @@ Srfi41SICPStream >> take: size [
 		  ifFalse: [ self class empty ]
 ]
 
+{ #category : #enumerating }
+Srfi41SICPStream >> transform: block [
+
+	^ block value: self
+]
+
 { #category : #tupling }
 Srfi41SICPStream >> tuplesOfSize: size overlapping: shouldOverlap [
 
