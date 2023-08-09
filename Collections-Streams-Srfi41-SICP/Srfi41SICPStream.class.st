@@ -11,7 +11,7 @@ Class {
 	#category : #'Collections-Streams-Srfi41-SICP'
 }
 
-{ #category : #accessing }
+{ #category : #auxiliary }
 Srfi41SICPStream class >> cesaro [
 
 	^ (self random: (RandomInteger new
@@ -21,43 +21,43 @@ Srfi41SICPStream class >> cesaro [
 		  (pair first gcd: pair second) = 1 ]
 ]
 
-{ #category : #accessing }
+{ #category : #'creating - high order' }
 Srfi41SICPStream class >> collect: block init: init [
 
 	^ self head: init tail: [ :stream | stream collect: block ]
 ]
 
-{ #category : #accessing }
+{ #category : #'creating - high order' }
 Srfi41SICPStream class >> constant: k [
 
 	^ self head: k tail: [ :stream | stream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #auxiliary }
 Srfi41SICPStream class >> cos [
 
 	^ self head: 1 tail: [ self sin negated integrate ]
 ]
 
-{ #category : #requirements }
+{ #category : #creating }
 Srfi41SICPStream class >> empty [
 
 	^ EmptyStream
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #auxiliary }
 Srfi41SICPStream class >> exponential [
 
 	^ self exponential: 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'creating - high order' }
 Srfi41SICPStream class >> exponential: unit [
 
 	^ self head: unit tail: [ :exp | exp integrate ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #creating }
 Srfi41SICPStream class >> head: head tail: valuable [
 
 	^ self new
@@ -74,13 +74,21 @@ Srfi41SICPStream class >> initialize [
 	EmptyStream := Srfi41SICPEmptyStream new
 ]
 
-{ #category : #accessing }
+{ #category : #'creating - high order' }
+Srfi41SICPStream class >> iterate: block init: init [
+
+	^ self
+		  head: init
+		  tail: [ self iterate: block init: (block value: init) ]
+]
+
+{ #category : #auxiliary }
 Srfi41SICPStream class >> naturals [
 
 	^ self collect: [ :each | each + 1 ] init: 0
 ]
 
-{ #category : #accessing }
+{ #category : #'creating - high order' }
 Srfi41SICPStream class >> random: random [
 
 	^ self
@@ -88,13 +96,13 @@ Srfi41SICPStream class >> random: random [
 		  tail: [ :stream | stream collect: [ :each | random next ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #auxiliary }
 Srfi41SICPStream class >> sin [
 
 	^ self head: 0 tail: [ self cos integrate ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #auxiliary }
 Srfi41SICPStream class >> tan [
 
 	^ self sin / self cos
