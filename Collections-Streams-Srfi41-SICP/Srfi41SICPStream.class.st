@@ -14,10 +14,16 @@ Class {
 { #category : #accessing }
 Srfi41SICPStream class >> cesaro [
 
-	^ ((RandomInteger new
-		    atMost: 1000000;
-		    asSrfi41SICPStream) tuplesOfSize: 2 overlapping: false)
-		  collect: [ :pair | (pair first gcd: pair second) = 1 ]
+	^ self cesaro: Character maxVal
+]
+
+{ #category : #accessing }
+Srfi41SICPStream class >> cesaro: atMost [
+
+	^ (RandomInteger new
+		   atMost: atMost;
+		   asSrfi41SICPStream) adjacentPairs collect: [ :pair |
+		  (pair first gcd: pair second) = 1 ]
 ]
 
 { #category : #accessing }
@@ -99,7 +105,7 @@ Srfi41SICPStream class >> tan [
 	^ self sin / self cos
 ]
 
-{ #category : #arithmetic }
+{ #category : #multiply }
 Srfi41SICPStream >> * another [
 
 	^ another multiplyFrom: self
@@ -123,13 +129,21 @@ Srfi41SICPStream >> / another [
 	^ self * another reciprocal
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #arithmetic }
+Srfi41SICPStream >> adaptToNumber: aNumber andSend: aSelector [
+
+	^ (self class constant: aNumber)
+		  zip: self
+		  with: [ :a :b | a perform: aSelector with: b ]
+]
+
+{ #category : #tupling }
 Srfi41SICPStream >> adjacentOverlappingPairs [
 
 	^ self tuplesOfSize: 2 overlapping: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tupling }
 Srfi41SICPStream >> adjacentPairs [
 
 	^ self tuplesOfSize: 2 overlapping: false
@@ -167,19 +181,19 @@ Srfi41SICPStream >> integrate [
 	^ self zip: self class naturals tail with: [ :s :i | s / i ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #simulation }
 Srfi41SICPStream >> montecarlo [
 
 	^ self montecarlo: [ :each | true = each ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #simulation }
 Srfi41SICPStream >> montecarlo: predicate [
 
 	^ self montecarlo: predicate successes: 0 failures: 0
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #simulation }
 Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 
 	| ss ff |
@@ -196,27 +210,27 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 		  self tail montecarlo: predicate successes: ss failures: ff ]
 ]
 
-{ #category : #arithmetic }
+{ #category : #multiply }
 Srfi41SICPStream >> multiplyFrom: client [
 
 	^ client multiply_Srfi41SICPStream: self
 ]
 
-{ #category : #arithmetic }
+{ #category : #multiply }
 Srfi41SICPStream >> multiply_Number: factor [
 
 	^ self collect: [ :each | each * factor ]
 ]
 
-{ #category : #arithmetic }
+{ #category : #multiply }
 Srfi41SICPStream >> multiply_Srfi41SICPStream: another [
 
 	| h |
 	h := self head.
 
-	^ self class head: h * another head tail: [
-		  (another tail collect: [ :each | h * each ])
-		  + (self tail * another) ]
+	^ self class
+		  head: h * another head
+		  tail: [ h * another tail + (self tail * another) ]
 ]
 
 { #category : #arithmetic }
@@ -274,7 +288,7 @@ Srfi41SICPStream >> tail: valuable [
 		        yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 Srfi41SICPStream >> take: size [
 
 	^ size > 0
@@ -288,7 +302,7 @@ Srfi41SICPStream >> take: size [
 		  ifFalse: [ self class empty ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tupling }
 Srfi41SICPStream >> tuplesOfSize: size overlapping: shouldOverlap [
 
 	^ size > 0
