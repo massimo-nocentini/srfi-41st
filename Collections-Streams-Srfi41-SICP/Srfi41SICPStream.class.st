@@ -132,6 +132,12 @@ Srfi41SICPStream >> / another [
 	^ self * another reciprocal
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> accelerate: block [
+
+	^ (self tableau: block) collect: [ :stream | stream head ]
+]
+
 { #category : #arithmetic }
 Srfi41SICPStream >> adaptToNumber: aNumber andSend: aSelector [
 
@@ -275,6 +281,12 @@ Srfi41SICPStream >> select: predicate [
 		  ifTrue: [
 		  self class head: h tail: [ self tail select: predicate ] ]
 		  ifFalse: [ self tail select: predicate ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> tableau: block [
+
+	^ self class iterate: block init: self
 ]
 
 { #category : #accessing }
