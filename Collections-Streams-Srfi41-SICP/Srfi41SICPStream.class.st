@@ -239,6 +239,12 @@ Srfi41SICPStream >> enumerate: i [
 	^ i -> self head >~ [ self tail enumerate: i + 1 ]
 ]
 
+{ #category : #converting }
+Srfi41SICPStream >> hasEvaluatedTail [
+
+	^ tail hasBeenEvaluated
+]
+
 { #category : #accessing }
 Srfi41SICPStream >> head [
 
@@ -263,6 +269,18 @@ Srfi41SICPStream >> intersperse: obj [
 	^ obj >~ [ self ] >~ [  ] , [
 	  (self tail intersperse: obj) collect: [ :stream |
 		  self head >~ [ stream ] ] ]
+]
+
+{ #category : #converting }
+Srfi41SICPStream >> justEvaluatedPrefix [
+
+	^ Array streamContents: [ :writer |
+		  | stream |
+		  stream := self.
+
+		  [
+		  writer nextPut: stream head.
+		  stream hasEvaluatedTail ] whileTrue: [ stream := stream tail ] ]
 ]
 
 { #category : #simulation }
