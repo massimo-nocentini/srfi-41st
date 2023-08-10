@@ -16,6 +16,12 @@ Srfi41SICPEmptyStream >> append_Srfi41SICPStream: suffix [
 	^ suffix
 ]
 
+{ #category : #accessing }
+Srfi41SICPEmptyStream >> at: position [
+
+	Error signal: 'Cannot reference a position an empty stream.'
+]
+
 { #category : #enumerating }
 Srfi41SICPEmptyStream >> collect: block [
 
@@ -32,6 +38,12 @@ Srfi41SICPEmptyStream >> concatenate [
 Srfi41SICPEmptyStream >> concatenateFrom: container [
 
 	^ container tail concatenate
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPEmptyStream >> enumerate: i [
+
+	^ self
 ]
 
 { #category : #accessing }

@@ -45,6 +45,12 @@ Srfi41SICPStream class >> empty [
 	^ EmptyStream
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> evenNaturals [
+
+	^ self collect: [ :each | each + 2 ] init: 0
+]
+
 { #category : #auxiliary }
 Srfi41SICPStream class >> exponential [
 
@@ -84,6 +90,12 @@ Srfi41SICPStream class >> iterate: block init: init [
 Srfi41SICPStream class >> naturals [
 
 	^ self collect: [ :each | each + 1 ] init: 0
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> oddNaturals [
+
+	^ self collect: [ :each | each + 2 ] init: 1
 ]
 
 { #category : #'creating - high order' }
@@ -182,6 +194,17 @@ Srfi41SICPStream >> asArray [
 	^ Array streamContents: [ :stream | self putOnStream: stream ]
 ]
 
+{ #category : #accessing }
+Srfi41SICPStream >> at: position [
+
+	| stream |
+	stream := self.
+
+	position - 1 timesRepeat: [ stream := stream tail ].
+
+	^ stream head
+]
+
 { #category : #enumerating }
 Srfi41SICPStream >> collect: block [
 
@@ -198,6 +221,18 @@ Srfi41SICPStream >> concatenate [
 Srfi41SICPStream >> concatenateFrom: container [
 
 	^ self head >~ [ (self tail >~ [ container tail ]) concatenate ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> enumerate [
+
+	^ self enumerate: 1
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> enumerate: i [
+
+	^ i -> self head >~ [ self tail enumerate: i + 1 ]
 ]
 
 { #category : #accessing }
@@ -350,9 +385,9 @@ Srfi41SICPStream >> take: size [
 ]
 
 { #category : #enumerating }
-Srfi41SICPStream >> transform: block [
+Srfi41SICPStream >> transform: valuable [
 
-	^ block value: self
+	^ valuable value: self
 ]
 
 { #category : #tupling }
