@@ -197,12 +197,16 @@ Srfi41SICPStream >> asArray [
 { #category : #accessing }
 Srfi41SICPStream >> at: position [
 
-	| stream |
-	stream := self.
+	^ position > 0
+		  ifTrue: [
+			  | stream |
+			  stream := self.
 
-	position - 1 timesRepeat: [ stream := stream tail ].
+			  position - 1 timesRepeat: [ stream := stream tail ].
 
-	^ stream head
+			  stream head ]
+		  ifFalse: [
+		  Error signal: 'Cannot reference a non-positive position.' ]
 ]
 
 { #category : #enumerating }
