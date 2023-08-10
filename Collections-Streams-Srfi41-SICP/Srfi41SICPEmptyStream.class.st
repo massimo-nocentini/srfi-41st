@@ -64,6 +64,12 @@ Srfi41SICPEmptyStream >> intersperse: obj [
 	^ obj >~ [  ] >~ [  ]
 ]
 
+{ #category : #converting }
+Srfi41SICPEmptyStream >> justEvaluatedPrefix [
+
+	^ {  }
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPEmptyStream >> permutations [
 
