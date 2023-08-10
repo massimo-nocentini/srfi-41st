@@ -66,6 +66,8 @@ Srfi41UnitValuableMemoizer >> valueFor: client [
 	self hasBeenEvaluated ifFalse: [
 		value := self evaluating: valuable for: client.
 
+		value ifNil: [ value := Srfi41SICPStream empty ].
+
 		hasBeenEvaluated := true ].
 
 	^ self value

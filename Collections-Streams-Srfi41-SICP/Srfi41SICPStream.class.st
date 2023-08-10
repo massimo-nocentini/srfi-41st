@@ -102,6 +102,12 @@ Srfi41SICPStream class >> sin [
 	^ self head: 0 tail: [ self cos integrate ]
 ]
 
+{ #category : #'creating - high order' }
+Srfi41SICPStream class >> singleton: obj [
+
+	^ self head: obj tail: [ self empty ]
+]
+
 { #category : #auxiliary }
 Srfi41SICPStream class >> tan [
 
@@ -114,15 +120,21 @@ Srfi41SICPStream >> * another [
 	| h |
 	h := self head.
 
-	^ self class head: h * another head tail: [
-		  (another tail collect: [ :each | h * each ])
-		  + (self tail * another) ]
+	^ h * another head >~ [
+	  (another tail collect: [ :each | h * each ])
+	  + (self tail * another) ]
 ]
 
 { #category : #arithmetic }
 Srfi41SICPStream >> + another [
 
 	^ self zip: another with: [ :r :s | r + s ]
+]
+
+{ #category : #appending }
+Srfi41SICPStream >> , another [
+
+	^ another appendedOn_Srfi41SICPStream: self
 ]
 
 { #category : #arithmetic }
@@ -155,6 +167,24 @@ Srfi41SICPStream >> adjacentPairs [
 	^ self tuplesOfSize: 2 overlapping: false
 ]
 
+{ #category : #appending }
+Srfi41SICPStream >> append_BlockClosure: block [
+
+	^ self head >~ [ self tail append_BlockClosure: block ]
+]
+
+{ #category : #appending }
+Srfi41SICPStream >> append_Srfi41SICPStream: suffix [
+
+	^ self head >~ [ self tail append_Srfi41SICPStream: suffix ]
+]
+
+{ #category : #appending }
+Srfi41SICPStream >> appendedOn_Srfi41SICPStream: prefix [
+
+	^ prefix append_Srfi41SICPStream: self
+]
+
 { #category : #converting }
 Srfi41SICPStream >> asArray [
 
@@ -167,6 +197,18 @@ Srfi41SICPStream >> collect: block [
 	^ self class
 		  head: (block value: self head)
 		  tail: [ self tail collect: block ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> concatenate [
+
+	^ self head concatenateFrom: self
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> concatenateFrom: container [
+
+	^ self head >~ [ (self tail >~ [ container tail ]) concatenate ]
 ]
 
 { #category : #accessing }
@@ -185,6 +227,14 @@ Srfi41SICPStream >> head: anObject [
 Srfi41SICPStream >> integrate [
 
 	^ self zip: self class naturals tail with: [ :s :i | s / i ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> intersperse: obj [
+
+	^ obj >~ [ self ] >~ [  ] , [
+	  (self tail intersperse: obj) collect: [ :stream |
+		  self head >~ [ stream ] ] ]
 ]
 
 { #category : #simulation }
@@ -234,11 +284,20 @@ Srfi41SICPStream >> partial: block [
 Srfi41SICPStream >> partial: block init: init [
 
 	| stream |
-	stream := self
-		          zip: (self class head: init tail: [ stream ])
+	stream := nil.
+
+	stream := (self class head: init tail: [ stream ])
+		          zip: self
 		          with: block.
 
 	^ stream
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> permutations [
+
+	^ (self tail permutations collect: [ :stream |
+		   stream intersperse: self head ]) concatenate
 ]
 
 { #category : #converting }

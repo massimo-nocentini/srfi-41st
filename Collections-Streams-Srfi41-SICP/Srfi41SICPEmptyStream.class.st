@@ -4,10 +4,34 @@ Class {
 	#category : #'Collections-Streams-Srfi41-SICP'
 }
 
+{ #category : #appending }
+Srfi41SICPEmptyStream >> append_BlockClosure: block [
+
+	^ block value
+]
+
+{ #category : #appending }
+Srfi41SICPEmptyStream >> append_Srfi41SICPStream: suffix [
+
+	^ suffix
+]
+
 { #category : #enumerating }
 Srfi41SICPEmptyStream >> collect: block [
 
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPEmptyStream >> concatenate [
+
+	^ self
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPEmptyStream >> concatenateFrom: container [
+
+	^ container tail concatenate
 ]
 
 { #category : #accessing }
@@ -20,6 +44,18 @@ Srfi41SICPEmptyStream >> head [
 Srfi41SICPEmptyStream >> head: anObject [
 
 	^ Srfi41SICPStream head: anObject tail: [ self ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPEmptyStream >> intersperse: obj [
+
+	^ obj >~ [  ] >~ [  ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPEmptyStream >> permutations [
+
+	^ Srfi41SICPStream singleton: self
 ]
 
 { #category : #converting }

@@ -11,8 +11,8 @@ SequenceableCollection >> asSrfi41SICPStreamFromIndex: i [
 
 	^ i <= self size
 		  ifTrue: [
-			  Srfi41SICPStream
-				  head: (self at: i)
-				  tail: [ self asSrfi41SICPStreamFromIndex: i + 1 ] ]
+			  | head |
+			  head := self at: i.
+			  head >~ [ self asSrfi41SICPStreamFromIndex: i + 1 ] ]
 		  ifFalse: [ Srfi41SICPStream empty ]
 ]
