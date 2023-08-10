@@ -24,19 +24,19 @@ Srfi41SICPStream class >> cesaro [
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> collect: block init: init [
 
-	^ self head: init tail: [ :stream | stream collect: block ]
+	^ init >~ [ :stream | stream collect: block ]
 ]
 
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> constant: k [
 
-	^ self head: k tail: [ :stream | stream ]
+	^ k >~ [ :stream | stream ]
 ]
 
 { #category : #auxiliary }
 Srfi41SICPStream class >> cos [
 
-	^ self head: 1 tail: [ self sin negated integrate ]
+	^ 1 >~ [ self sin negated integrate ]
 ]
 
 { #category : #creating }
@@ -54,7 +54,7 @@ Srfi41SICPStream class >> exponential [
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> exponential: unit [
 
-	^ self head: unit tail: [ :exp | exp integrate ]
+	^ unit >~ [ :exp | exp integrate ]
 ]
 
 { #category : #creating }
@@ -77,9 +77,7 @@ Srfi41SICPStream class >> initialize [
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> iterate: block init: init [
 
-	^ self
-		  head: init
-		  tail: [ self iterate: block init: (block value: init) ]
+	^ init >~ [ self iterate: block init: (block value: init) ]
 ]
 
 { #category : #auxiliary }
@@ -91,21 +89,14 @@ Srfi41SICPStream class >> naturals [
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> random: random [
 
-	^ self
-		  head: random next
-		  tail: [ :stream | stream collect: [ :each | random next ] ]
+	^ random next
+	  >~ [ :stream | stream collect: [ :each | random next ] ]
 ]
 
 { #category : #auxiliary }
 Srfi41SICPStream class >> sin [
 
-	^ self head: 0 tail: [ self cos integrate ]
-]
-
-{ #category : #'creating - high order' }
-Srfi41SICPStream class >> singleton: obj [
-
-	^ self head: obj tail: [ self empty ]
+	^ 0 >~ [ self cos integrate ]
 ]
 
 { #category : #auxiliary }
@@ -194,9 +185,7 @@ Srfi41SICPStream >> asArray [
 { #category : #enumerating }
 Srfi41SICPStream >> collect: block [
 
-	^ self class
-		  head: (block value: self head)
-		  tail: [ self tail collect: block ]
+	^ (block value: self head) >~ [ self tail collect: block ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -260,10 +249,8 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 		ifTrue: [ ss := ss + 1 ]
 		ifFalse: [ ff := ff + 1 ].
 
-	^ self class
-		  head: ss / (ss + ff)
-		  tail: [
-		  self tail montecarlo: predicate successes: ss failures: ff ]
+	^ ss / (ss + ff)
+	  >~ [ self tail montecarlo: predicate successes: ss failures: ff ]
 ]
 
 { #category : #arithmetic }
@@ -275,9 +262,7 @@ Srfi41SICPStream >> negated [
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> partial: block [
 
-	^ self class
-		  head: self head
-		  tail: [ self tail partial: block init: self head ]
+	^ self head >~ [ self tail partial: block init: self head ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -286,9 +271,7 @@ Srfi41SICPStream >> partial: block init: init [
 	| stream |
 	stream := nil.
 
-	stream := (self class head: init tail: [ stream ])
-		          zip: self
-		          with: block.
+	stream := init >~ [ stream ] zip: self with: block.
 
 	^ stream
 ]
@@ -317,9 +300,8 @@ Srfi41SICPStream >> reciprocal [
 { #category : #arithmetic }
 Srfi41SICPStream >> reciprocal: unit [
 
-	^ self class head: unit / self head tail: [ :reciprocal |
-		  self tail * reciprocal collect: [ :each |
-			  each negated / self head ] ]
+	^ unit / self head >~ [ :reciprocal |
+	  self tail * reciprocal collect: [ :each | each negated / self head ] ]
 ]
 
 { #category : #enumerating }
@@ -329,8 +311,7 @@ Srfi41SICPStream >> select: predicate [
 	h := self head.
 
 	^ (predicate value: h)
-		  ifTrue: [
-		  self class head: h tail: [ self tail select: predicate ] ]
+		  ifTrue: [ h >~ [ self tail select: predicate ] ]
 		  ifFalse: [ self tail select: predicate ]
 ]
 
@@ -361,11 +342,11 @@ Srfi41SICPStream >> take: size [
 		  ifTrue: [
 			  | block |
 			  block := size == 1
-				           ifTrue: [ [ self class empty ] ]
+				           ifTrue: [ [  ] ]
 				           ifFalse: [ [ self tail take: size - 1 ] ].
 
-			  self class head: self head tail: block ]
-		  ifFalse: [ self class empty ]
+			  self head >~ block ]
+		  ifFalse: [ {  } asSrfi41SICPStream ]
 ]
 
 { #category : #enumerating }
@@ -390,19 +371,19 @@ Srfi41SICPStream >> tuplesOfSize: size overlapping: shouldOverlap [
 
 			  tuple at: size put: rest head.
 
-			  self class head: tuple tail: [
-				  (shouldOverlap
-					   ifTrue: [ self ]
-					   ifFalse: [ rest ]) tail
-					  tuplesOfSize: size
-					  overlapping: shouldOverlap ] ]
+			  tuple >~ [
+			  | stream |
+			  stream := shouldOverlap
+				            ifTrue: [ self ]
+				            ifFalse: [ rest ].
+
+			  stream tail tuplesOfSize: size overlapping: shouldOverlap ] ]
 		  ifFalse: [ self class constant: {  } ]
 ]
 
 { #category : #combinators }
 Srfi41SICPStream >> zip: stream with: block [
 
-	^ self class
-		  head: (block value: self head value: stream head)
-		  tail: [ self tail zip: stream tail with: block ]
+	^ (block value: self head value: stream head)
+	  >~ [ self tail zip: stream tail with: block ]
 ]

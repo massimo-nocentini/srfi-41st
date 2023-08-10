@@ -43,7 +43,7 @@ Srfi41SICPEmptyStream >> head [
 { #category : #accessing }
 Srfi41SICPEmptyStream >> head: anObject [
 
-	^ Srfi41SICPStream head: anObject tail: [ self ]
+	^ anObject >~ [ self ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -55,7 +55,7 @@ Srfi41SICPEmptyStream >> intersperse: obj [
 { #category : #'as yet unclassified' }
 Srfi41SICPEmptyStream >> permutations [
 
-	^ Srfi41SICPStream singleton: self
+	^ self >~ [  ]
 ]
 
 { #category : #converting }

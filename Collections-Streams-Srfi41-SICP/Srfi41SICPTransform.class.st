@@ -13,7 +13,5 @@ Srfi41SICPTransform >> headOf: stream [
 { #category : #accessing }
 Srfi41SICPTransform >> value: stream [
 
-	^ Srfi41SICPStream
-		  head: (self headOf: stream)
-		  tail: [ self value: stream tail ]
+	^ (self headOf: stream) >~ [ self value: stream tail ]
 ]
