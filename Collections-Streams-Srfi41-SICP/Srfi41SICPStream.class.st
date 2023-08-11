@@ -319,7 +319,7 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 { #category : #arithmetic }
 Srfi41SICPStream >> negated [
 
-	^ self collect: #negated
+	^ self collect: [ :each | each negated ]
 ]
 
 { #category : #converting }
