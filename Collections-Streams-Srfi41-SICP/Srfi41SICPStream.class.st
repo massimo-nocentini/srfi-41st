@@ -263,6 +263,12 @@ Srfi41SICPStream >> integrate [
 	^ self zip: self class naturals tail with: [ :s :i | s / i ]
 ]
 
+{ #category : #converting }
+Srfi41SICPStream >> interleave: another [
+
+	^ self head >~ [ another interleave: self tail ]
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> intersperse: obj [
 
@@ -314,6 +320,29 @@ Srfi41SICPStream >> montecarlo: predicate successes: s failures: f [
 Srfi41SICPStream >> negated [
 
 	^ self collect: #negated
+]
+
+{ #category : #converting }
+Srfi41SICPStream >> pairs: another [
+
+	^ self pairs: another with: [ :a :b | Array with: a with: b ]
+]
+
+{ #category : #converting }
+Srfi41SICPStream >> pairs: another with: block [
+
+	| h |
+	h := self head.
+
+	^ (block value: h value: another head) >~ [
+	  | row triangle anotherTail |
+	  anotherTail := another tail.
+
+	  row := anotherTail collect: [ :each | block value: h value: each ].
+
+	  triangle := self tail pairs: anotherTail with: block.
+
+	  row interleave: triangle ]
 ]
 
 { #category : #'as yet unclassified' }

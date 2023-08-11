@@ -58,6 +58,12 @@ Srfi41SICPEmptyStream >> head: anObject [
 	^ anObject >~ [ self ]
 ]
 
+{ #category : #converting }
+Srfi41SICPEmptyStream >> interleave: another [
+
+	^ another
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPEmptyStream >> intersperse: obj [
 
