@@ -323,9 +323,14 @@ Srfi41SICPStream >> negated [
 ]
 
 { #category : #converting }
-Srfi41SICPStream >> pairs: another [
+Srfi41SICPStream >> pairs: another all: shouldSquare [
 
-	^ self pairs: another with: [ :a :b | Array with: a with: b ]
+	| block |
+	block := [ :a :b | Array with: a with: b ].
+
+	^ shouldSquare
+		  ifTrue: [ self pairsAll: another with: block ]
+		  ifFalse: [ self pairs: another with: block ]
 ]
 
 { #category : #converting }
@@ -343,6 +348,25 @@ Srfi41SICPStream >> pairs: another with: block [
 	  triangle := self tail pairs: anotherTail with: block.
 
 	  row interleave: triangle ]
+]
+
+{ #category : #converting }
+Srfi41SICPStream >> pairsAll: another with: block [
+
+	| h hh |
+	h := self head.
+	hh := another head.
+
+	^ (block value: h value: hh) >~ [
+	  | row column square margin |
+	  row := another tail collect: [ :each | block value: h value: each ].
+	  column := self tail collect: [ :each | block value: each value: hh ].
+
+	  margin := row interleave: column.
+
+	  square := self tail pairsAll: another tail with: block.
+
+	  margin interleave: square ]
 ]
 
 { #category : #'as yet unclassified' }
