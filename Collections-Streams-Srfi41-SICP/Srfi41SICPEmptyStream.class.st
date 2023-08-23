@@ -40,6 +40,12 @@ Srfi41SICPEmptyStream >> concatenateFrom: container [
 	^ container tail concatenate
 ]
 
+{ #category : #enumerating }
+Srfi41SICPEmptyStream >> do: block [
+
+	
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPEmptyStream >> enumerate: i [
 
@@ -87,6 +93,12 @@ Srfi41SICPEmptyStream >> putOnStream: collection [
 	"Being a method without code allows me to stop the recursion"
 
 	
+]
+
+{ #category : #accessing }
+Srfi41SICPEmptyStream >> size [
+
+	^ 0
 ]
 
 { #category : #accessing }

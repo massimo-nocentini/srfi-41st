@@ -233,6 +233,21 @@ Srfi41SICPStream >> concatenateFrom: container [
 	^ self head >~ [ (self tail >~ [ container tail ]) concatenate ]
 ]
 
+{ #category : #copying }
+Srfi41SICPStream >> copyFrom: from to: to [
+
+	^ Array streamContents: [ :buffer |
+		  from to: to do: [ :i | buffer << (self at: i) ] ]
+]
+
+{ #category : #enumerating }
+Srfi41SICPStream >> do: block [
+
+	block value: self head.
+
+	self tail do: block
+]
+
 { #category : #'as yet unclassified' }
 Srfi41SICPStream >> enumerate [
 
@@ -397,6 +412,12 @@ Srfi41SICPStream >> putOnStream: aStream [
 	self tail putOnStream: aStream
 ]
 
+{ #category : #accessing }
+Srfi41SICPStream >> readStream [
+
+	^ ReadStream on: self
+]
+
 { #category : #arithmetic }
 Srfi41SICPStream >> reciprocal [
 
@@ -419,6 +440,12 @@ Srfi41SICPStream >> select: predicate [
 	^ (predicate value: h)
 		  ifTrue: [ h >~ [ self tail select: predicate ] ]
 		  ifFalse: [ self tail select: predicate ]
+]
+
+{ #category : #accessing }
+Srfi41SICPStream >> size [
+
+	^ 1 + self tail size
 ]
 
 { #category : #pairing }
