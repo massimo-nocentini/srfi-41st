@@ -170,6 +170,12 @@ Srfi41SICPStream >> adjacentPairs [
 	^ self tuplesOfSize: 2 overlapping: false
 ]
 
+{ #category : #pairing }
+Srfi41SICPStream >> allPairs: another [
+
+	^ self pairs: another lowerTriangular: true upperTriangular: true
+]
+
 { #category : #appending }
 Srfi41SICPStream >> append_BlockClosure: block [
 
@@ -215,7 +221,7 @@ Srfi41SICPStream >> collect: block [
 	^ (block value: self head) >~ [ self tail collect: block ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'stream of streams' }
 Srfi41SICPStream >> concatenate [
 
 	^ self head concatenateFrom: self
@@ -289,6 +295,29 @@ Srfi41SICPStream >> justEvaluatedPrefix [
 		  stream hasEvaluatedTail ] whileTrue: [ stream := stream tail ] ]
 ]
 
+{ #category : #pairing }
+Srfi41SICPStream >> lowerTriangular: another with: block [
+
+	| h |
+	h := another head.
+
+	^ (block value: self head value: h) >~ [
+	  | column triangle selfTail |
+	  selfTail := self tail.
+
+	  column := selfTail collect: [ :each | block value: each value: h ].
+
+	  triangle := selfTail lowerTriangular: another tail with: block.
+
+	  column interleave: triangle ]
+]
+
+{ #category : #pairing }
+Srfi41SICPStream >> lowerTriangularPairs: another [
+
+	^ self pairs: another lowerTriangular: true upperTriangular: false
+]
+
 { #category : #simulation }
 Srfi41SICPStream >> montecarlo [
 
@@ -322,51 +351,18 @@ Srfi41SICPStream >> negated [
 	^ self collect: [ :each | each negated ]
 ]
 
-{ #category : #converting }
-Srfi41SICPStream >> pairs: another all: shouldSquare [
+{ #category : #pairing }
+Srfi41SICPStream >> pairs: another lowerTriangular: lower upperTriangular: upper [
 
 	| block |
 	block := [ :a :b | Array with: a with: b ].
 
-	^ shouldSquare
-		  ifTrue: [ self pairsAll: another with: block ]
-		  ifFalse: [ self pairs: another with: block ]
-]
-
-{ #category : #converting }
-Srfi41SICPStream >> pairs: another with: block [
-
-	| h |
-	h := self head.
-
-	^ (block value: h value: another head) >~ [
-	  | row triangle anotherTail |
-	  anotherTail := another tail.
-
-	  row := anotherTail collect: [ :each | block value: h value: each ].
-
-	  triangle := self tail pairs: anotherTail with: block.
-
-	  row interleave: triangle ]
-]
-
-{ #category : #converting }
-Srfi41SICPStream >> pairsAll: another with: block [
-
-	| h hh |
-	h := self head.
-	hh := another head.
-
-	^ (block value: h value: hh) >~ [
-	  | row column square margin |
-	  row := another tail collect: [ :each | block value: h value: each ].
-	  column := self tail collect: [ :each | block value: each value: hh ].
-
-	  margin := row interleave: column.
-
-	  square := self tail pairsAll: another tail with: block.
-
-	  margin interleave: square ]
+	^ lower & upper
+		  ifTrue: [ self square: another with: block ]
+		  ifFalse: [
+			  lower
+				  ifTrue: [ self lowerTriangular: another with: block ]
+				  ifFalse: [ self upperTriangular: another with: block ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -425,7 +421,26 @@ Srfi41SICPStream >> select: predicate [
 		  ifFalse: [ self tail select: predicate ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #pairing }
+Srfi41SICPStream >> square: another with: block [
+
+	| h hh |
+	h := self head.
+	hh := another head.
+
+	^ (block value: h value: hh) >~ [
+	  | row column square margin |
+	  row := another tail collect: [ :each | block value: h value: each ].
+	  column := self tail collect: [ :each | block value: each value: hh ].
+
+	  margin := row interleave: column.
+
+	  square := self tail square: another tail with: block.
+
+	  margin interleave: square ]
+]
+
+{ #category : #'stream of streams' }
 Srfi41SICPStream >> tableau: block [
 
 	^ self class iterate: block init: self
@@ -489,6 +504,29 @@ Srfi41SICPStream >> tuplesOfSize: size overlapping: shouldOverlap [
 
 			  stream tail tuplesOfSize: size overlapping: shouldOverlap ] ]
 		  ifFalse: [ self class constant: {  } ]
+]
+
+{ #category : #pairing }
+Srfi41SICPStream >> upperTriangular: another with: block [
+
+	| h |
+	h := self head.
+
+	^ (block value: h value: another head) >~ [
+	  | row triangle anotherTail |
+	  anotherTail := another tail.
+
+	  row := anotherTail collect: [ :each | block value: h value: each ].
+
+	  triangle := self tail upperTriangular: anotherTail with: block.
+
+	  row interleave: triangle ]
+]
+
+{ #category : #pairing }
+Srfi41SICPStream >> upperTriangularPairs: another [
+
+	^ self pairs: another lowerTriangular: false upperTriangular: true
 ]
 
 { #category : #combinators }
