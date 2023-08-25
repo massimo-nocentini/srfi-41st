@@ -111,6 +111,25 @@ Srfi41SICPStream class >> sin [
 	^ 0 >~ [ self cos integrate ]
 ]
 
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream class >> solveFirstODE: f differential: dt init: init [
+	"| y dy |
+	dy := nil.
+
+	y := [ dy ] asSrfi41SICPStream integral: dt init: init.
+
+	dy := y collect: f.
+
+	^ y"
+
+	| y |
+	y := nil.
+
+	y := [ y collect: f ] asSrfi41SICPStream integral: dt init: init.
+
+	^ y
+]
+
 { #category : #auxiliary }
 Srfi41SICPStream class >> tan [
 
@@ -276,6 +295,18 @@ Srfi41SICPStream >> head [
 Srfi41SICPStream >> head: anObject [
 
 	head := anObject
+]
+
+{ #category : #arithmetic }
+Srfi41SICPStream >> integral: dt init: init [
+
+	| integral |
+	integral := nil.
+
+	integral := init
+	            >~ [ (self collect: [ :each | each * dt ]) + integral ].
+
+	^ integral
 ]
 
 { #category : #arithmetic }
