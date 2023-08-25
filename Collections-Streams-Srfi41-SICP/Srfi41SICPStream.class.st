@@ -98,6 +98,13 @@ Srfi41SICPStream class >> oddNaturals [
 	^ self collect: [ :each | each + 2 ] init: 1
 ]
 
+{ #category : #evaluating }
+Srfi41SICPStream class >> primes [
+
+	^ self naturals tail tail sieve: [ :prime :each |
+		  (each isDivisibleBy: prime) not ]
+]
+
 { #category : #'creating - high order' }
 Srfi41SICPStream class >> random: random [
 
@@ -322,6 +329,12 @@ Srfi41SICPStream >> interleave: another [
 ]
 
 { #category : #'as yet unclassified' }
+Srfi41SICPStream >> interleaveSuspended: suspended [
+
+	^ self interleave: suspended
+]
+
+{ #category : #'as yet unclassified' }
 Srfi41SICPStream >> intersperse: obj [
 
 	^ obj >~ [ self ] >~ [  ] , [
@@ -470,7 +483,18 @@ Srfi41SICPStream >> select: predicate [
 
 	^ (predicate value: h)
 		  ifTrue: [ h >~ [ self tail select: predicate ] ]
-		  ifFalse: [ self tail select: predicate ]
+		  ifFalse: [ [ self tail select: predicate ] asSrfi41SICPStream ]
+]
+
+{ #category : #'as yet unclassified' }
+Srfi41SICPStream >> sieve: block [
+
+	| h |
+	h := self head.
+
+	^ h >~ [
+	  (self tail select: [ :each | block value: h value: each ]) sieve:
+		  block ]
 ]
 
 { #category : #accessing }
