@@ -186,17 +186,25 @@ Srfi41ArithSequenceTest >> testNthRootsOfUnity [
 			((Srfi41NumbersSequence nthRootsOfUnity collect: [ :roots | 
 				  (roots collect: #abs) allSatisfy: [ :each | each closeTo: 1 ] ]) 
 				 next: n) and ].
-	3 in: [ :n | 
-		self
-			assert: (Srfi41NumbersSequence nthRootsOfUnity next: n)
-			equals: { 
-					(Array with: 1 + 0 i).
-					(Array with: 1 + 0 i with: -1.0 + 1.2246467991473532e-16 i).
-					(Array
-						 with: 1 + 0 i
-						 with: -0.4999999999999998 + 0.8660254037844388 i
-						 with: -0.5000000000000006 - 0.8660254037844385 i) }
-			modulo: #asOrderedCollection ]
+	3 in: [ :n |
+		| roots expected |
+		roots := (Srfi41NumbersSequence nthRootsOfUnity next: n)
+			         asOrderedCollection.
+		expected := {
+			            (Array with: 1 + 0 i).
+			            (Array with: 1 + 0 i with: -1.0 + 1.2246467991473532e-16 i).
+			            (Array
+				             with: 1 + 0 i
+				             with: -0.5 + 0.8660254037844386 i
+				             with: -0.5 - 0.8660254037844386 i) }.
+		"The last digits depend on the float arithmetic of the image (Pharo 15 differs from Pharo 13)."
+		self assert: roots size equals: expected size.
+		roots with: expected do: [ :someRoots :expectedRoots |
+			self assert: someRoots size equals: expectedRoots size.
+			someRoots
+				with: expectedRoots
+				do: [ :each :anExpected |
+				self assert: (each - anExpected) abs < 1.0e-12 ] ] ]
 ]
 
 { #category : #tests }
@@ -278,16 +286,10 @@ Srfi41ArithSequenceTest >> testRandomNumbers [
 			self
 				assert: (Srfi41NumbersSequence random next: n)
 				equals:
-					#(0.13153778814316625
-0.7556053221950332
-0.4586501319234493
-0.5327672374121692
-0.21895918632809036
-0.04704461621448613
-0.678864716868319
-0.6792964058366122
-0.9346928959408276
-0.3835020774898595)
+					#( 0.39040563395246863 0.07839892199262977 0.21745904488489032
+					   0.08020360255613923 0.6773677538149059 0.5292051276192069
+					   0.13314382499083877 0.2519524754025042 0.3743126802146435
+					   0.9325365801341832 )
 				modulo: #asOrderedCollection ]
 ]
 

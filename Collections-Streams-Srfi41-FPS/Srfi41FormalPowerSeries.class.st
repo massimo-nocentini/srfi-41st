@@ -70,10 +70,10 @@ Srfi41FormalPowerSeries >> adaptToNumber: anInteger andSend: aString [
 
 { #category : #'as yet unclassified' }
 Srfi41FormalPowerSeries >> asArray2Drows: rows columns: cols [
-	^ Array2D
-		rows: rows
-		columns: cols
-		tabulate: [ :n :k | (self stream at: n) stream at: k ]
+	^ CTArray2D
+		width: cols
+		height: rows
+		tabulate: [ :k :n | (self stream at: n) stream at: k ]
 ]
 
 { #category : #accessing }

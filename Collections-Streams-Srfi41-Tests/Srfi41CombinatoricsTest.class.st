@@ -9,7 +9,7 @@ Srfi41CombinatoricsTest >> testCatalanTriangle [
 	15
 		in: [ :size | 
 			self
-				assert: (size @ size) catalanTriangle asString
+				assert: (size @ size) catalanTriangle srfi41MatrixString lines
 				equals:
 					'(1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -25,7 +25,7 @@ Srfi41CombinatoricsTest >> testCatalanTriangle [
 58786 58786 41990 25194 13260 6188 2548 910 273 65 11 1 0 0 0
 208012 208012 149226 90440 48450 23256 9996 3808 1260 350 77 12 1 0 0
 742900 742900 534888 326876 177650 87210 38760 15504 5508 1700 440 90 13 1 0
-2674440 2674440 1931540 1188640 653752 326876 149226 62016 23256 7752 2244 544 104 14 1 )' ]
+2674440 2674440 1931540 1188640 653752 326876 149226 62016 23256 7752 2244 544 104 14 1 )' lines ]
 ]
 
 { #category : #tests }
@@ -33,7 +33,7 @@ Srfi41CombinatoricsTest >> testPascalTriangle [
 	15
 		in: [ :size | 
 			self
-				assert: (size @ size) pascalTriangle asString
+				assert: (size @ size) pascalTriangle srfi41MatrixString lines
 				equals:
 					'(1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -49,5 +49,5 @@ Srfi41CombinatoricsTest >> testPascalTriangle [
 1 11 55 165 330 462 462 330 165 55 11 1 0 0 0
 1 12 66 220 495 792 924 792 495 220 66 12 1 0 0
 1 13 78 286 715 1287 1716 1716 1287 715 286 78 13 1 0
-1 14 91 364 1001 2002 3003 3432 3003 2002 1001 364 91 14 1 )' ]
+1 14 91 364 1001 2002 3003 3432 3003 2002 1001 364 91 14 1 )' lines ]
 ]

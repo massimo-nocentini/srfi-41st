@@ -87,7 +87,7 @@ Srfi41FormalPowerSeriesTest >> testCatalanTriangle [
 				assert:
 					(d * (1 - (d * self t * self z)) reciprocal
 						asArray2Drows: size
-						columns: size) transposed
+						columns: size) srfi41Transposed
 				equals: (size @ size) catalanTriangle ]
 ]
 
@@ -101,7 +101,7 @@ Srfi41FormalPowerSeriesTest >> testCatalanTriangleBigSizeAsString [
 				assert:
 					(d * (1 - (d * self t * self z)) reciprocal
 						asArray2Drows: size
-						columns: size) transposed asString
+						columns: size) srfi41Transposed srfi41MatrixString lines
 				equals:
 					'(1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -122,7 +122,7 @@ Srfi41FormalPowerSeriesTest >> testCatalanTriangleBigSizeAsString [
 35357670 35357670 25662825 15967980 8947575 4601610 2187185 961400 389367 144210 48279 14364 3705 798 135 16 1 0 0 0
 129644790 129644790 94287120 58929450 33266625 17298645 8351070 3749460 1562275 600875 211508 67298 19019 4655 950 152 17 1 0 0
 477638700 477638700 347993910 218349120 124062000 65132550 31865925 14567280 6216210 2466750 904475 303600 92092 24794 5775 1120 170 18 1 0
-1767263190 1767263190 1289624490 811985790 463991880 245642760 121580760 56448210 24582285 10015005 3798795 1332045 427570 123970 31878 7084 1309 189 19 1 )' ]
+1767263190 1767263190 1289624490 811985790 463991880 245642760 121580760 56448210 24582285 10015005 3798795 1332045 427570 123970 31878 7084 1309 189 19 1 )' lines ]
 ]
 
 { #category : #tests }

@@ -1833,10 +1833,10 @@ Srfi41Stream >> asArray [
 
 { #category : #testing }
 Srfi41Stream >> asArray2Drows: rows columns: cols [
-	^ Array2D
-		rows: rows
-		columns: cols
-		tabulate: [ :n :k | (self at: n) at: k ]
+	^ CTArray2D
+		width: cols
+		height: rows
+		tabulate: [ :k :n | (self at: n) at: k ]
 ]
 
 { #category : #testing }

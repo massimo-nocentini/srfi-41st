@@ -1519,8 +1519,7 @@ Srfi41StreamTest >> testReverse [
 		in: [ :interval | 
 			self
 				assert: (interval asSrfi41Stream collect: #reciprocal) reverse size
-				equals: interval size
-				modulo: #asOrderedCollection ]
+				equals: interval size ]
 ]
 
 { #category : #tests }
