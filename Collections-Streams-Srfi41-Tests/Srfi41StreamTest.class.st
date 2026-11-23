@@ -1,5 +1,5 @@
 "
-A Srfi41StreamTest is a test class for testing the behavior of Srfi41Stream
+A `Srfi41StreamTest` is a test class for testing the behavior of `Srfi41Stream`
 "
 Class {
 	#name : #Srfi41StreamTest,
