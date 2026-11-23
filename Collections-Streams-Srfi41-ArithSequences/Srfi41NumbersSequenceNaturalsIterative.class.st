@@ -1,3 +1,6 @@
+"
+I am the stream of the natural numbers from 0, made by the iteration of a block that adds one (`srfi41Iter`).
+"
 Class {
 	#name : #Srfi41NumbersSequenceNaturalsIterative,
 	#superclass : #Srfi41NumbersSequence,

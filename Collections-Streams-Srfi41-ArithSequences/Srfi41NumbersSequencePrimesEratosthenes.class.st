@@ -1,3 +1,6 @@
+"
+I am the stream of the prime numbers: the integers from 2, without those that a preceding element of mine divides.
+"
 Class {
 	#name : #Srfi41NumbersSequencePrimesEratosthenes,
 	#superclass : #Srfi41NumbersSequence,

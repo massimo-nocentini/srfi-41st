@@ -1,3 +1,6 @@
+"
+I test `catalanTriangle` and `pascalTriangle` of `Point`, on triangles of size 15.
+"
 Class {
 	#name : #Srfi41CombinatoricsTest,
 	#superclass : #TestCase,

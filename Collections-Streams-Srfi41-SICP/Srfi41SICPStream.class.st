@@ -1,3 +1,49 @@
+"
+I am a stream whose first element, my `head`, is already evaluated, and whose rest, my `tail`, is suspended: the odd streams that the comment of `Srfi41Stream` attributes to Abelson and Sussman. My tail is computed at most once, the first time that it is asked for.
+
+# Making a stream
+
+The binary message `>~` puts an object in front of a block that answers the rest. The block may take an argument, which is the stream itself, and a nil rest is the empty stream.
+
+```smalltalk
+(1 >~ [ 2 >~ [ ] ]) asArray.
+""#(1 2)""
+
+((1 >~ [ :doubles | doubles collect: [ :each | each * 2 ] ]) take: 5) asArray.
+""#(1 2 4 8 16)""
+```
+
+There are also:
+
+- `asSrfi41SICPStream` of a sequenceable collection, and that of a block, see `Srfi41SICPSuspensionStream`;
+- `empty`, `constant:`, `iterate:init:`, `collect:init:` and `random:` of my class;
+- the sequences `naturals`, `evenNaturals`, `oddNaturals`, `primes` and `cesaro` of my class;
+- `exponential`, `sin`, `cos` and `tan` of my class, the coefficients of these power series;
+- `solveFirstODE:differential:init:` of my class, which integrates the values of a block on its own solution, by steps of the differential.
+
+# Using a stream
+
+- Elements: `at:`, which counts from 1, `copyFrom:to:`, `take:`, which answers a stream, `asArray` and `size`, which need a finite stream, and `justEvaluatedPrefix`, the elements evaluated so far.
+- Enumeration: `collect:`, `select:`, `do:`, `zip:with:`, `enumerate`, `partial:` (the partial results of a binary block) and `sieve:`.
+- Streams together: `,`, `interleave:`, `concatenate` of a stream of streams, `permutations`.
+- Arithmetic: `+`, `-` and `negated` by elements; `*`, `/`, `reciprocal` and `integrate` of the coefficients of power series; `integral:init:`.
+- Pairs and tuples: `allPairs:`, `lowerTriangularPairs:`, `upperTriangularPairs:`, `adjacentPairs`, `adjacentOverlappingPairs`.
+- Simulation: `montecarlo` and `montecarlo:`, the ratio of the successes so far.
+- Sequence acceleration: `transform:`, `tableau:` and `accelerate:`, see `Srfi41SICPTransform`.
+
+```smalltalk
+(Srfi41SICPStream primes take: 6) asArray.
+""#(2 3 5 7 11 13)""
+
+(Srfi41SICPStream exponential take: 5) asArray.
+""{1. 1. (1/2). (1/6). (1/24)}""
+```
+
+# Instance variables
+
+- `head`: my first element.
+- `tail`: a `Srfi41UnitValuableMemoizer` on the block that answers the rest.
+"
 Class {
 	#name : #Srfi41SICPStream,
 	#superclass : #Object,

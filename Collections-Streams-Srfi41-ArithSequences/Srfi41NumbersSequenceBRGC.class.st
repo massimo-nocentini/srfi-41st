@@ -1,3 +1,11 @@
+"
+I am the stream of the binary reflected Gray codes. My first element has the empty code only, and the element after n-bit codes has the codes of n + 1 bits: those of n bits prefixed by 0, then the same in reverse order prefixed by 1. Each element is an array of codes, and each code an array of bits.
+
+```smalltalk
+(Srfi41NumbersSequence binaryReflectedGrayCodes next: 3) asArray.
+""#(#(#()) #(#(0) #(1)) #(#(0 0) #(0 1) #(1 1) #(1 0)))""
+```
+"
 Class {
 	#name : #Srfi41NumbersSequenceBRGC,
 	#superclass : #Srfi41NumbersSequence,

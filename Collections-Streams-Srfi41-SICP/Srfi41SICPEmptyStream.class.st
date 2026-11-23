@@ -1,3 +1,8 @@
+"
+I am the stream without elements. `Srfi41SICPStream empty` answers my instance, which is also the rest of a stream whose block answers nil.
+
+I end the recursions of `Srfi41SICPStream`: most messages answer myself, the empty collection, zero or the other stream, and my `tail` is myself. I have no head, and no block can be my tail: `head`, `at:` and `tail:` signal an error.
+"
 Class {
 	#name : #Srfi41SICPEmptyStream,
 	#superclass : #Srfi41SICPStream,

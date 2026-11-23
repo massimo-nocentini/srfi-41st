@@ -1,3 +1,6 @@
+"
+I am the stream of the Fibonacci numbers, 0 1 1 2 3 5 and so on, defined in terms of itself: after the first two elements, the sum of the stream and its `cdr`.
+"
 Class {
 	#name : #Srfi41NumbersSequenceFibonacciCorecursive,
 	#superclass : #Srfi41NumbersSequence,

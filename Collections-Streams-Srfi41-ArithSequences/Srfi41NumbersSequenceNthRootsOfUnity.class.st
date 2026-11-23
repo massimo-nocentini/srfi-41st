@@ -1,3 +1,6 @@
+"
+I am the stream whose nth element, counting from 1, is the array of the n complex roots of unity of order n. They are the powers, from 0 to n - 1, of e raised to 2πi / n, computed with floats.
+"
 Class {
 	#name : #Srfi41NumbersSequenceNthRootsOfUnity,
 	#superclass : #Srfi41NumbersSequence,

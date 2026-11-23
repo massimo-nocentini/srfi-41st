@@ -1,3 +1,6 @@
+"
+I am the Metacello baseline of the project. I load the packages whose names start with `Collections-Streams-Srfi41`, except `Collections-Streams-Srfi41-Roassal2`, and the project `ContainersEssentials`, which provides `CTArray2D`, `CTSlotDescriptorsVisitor` and `RandomInteger`.
+"
 Class {
 	#name : #BaselineOfSrfi41,
 	#superclass : #BaselineOf,

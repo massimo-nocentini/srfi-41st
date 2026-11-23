@@ -1,3 +1,6 @@
+"
+I am the superclass of the tests of the streams. I add assertions that convert the actual and the expected collection, for instance with `#asOrderedCollection`, and then compare them: `assert:equals:modulo:` converts them whole, and `assert:equals:upto:modulo:` only the first elements of their streams.
+"
 Class {
 	#name : #Srfi41AbstractTest,
 	#superclass : #TestCase,

@@ -1,3 +1,6 @@
+"
+I am the stream of the factorials, from that of 0: the partial products of the positive integers, with `scan:initBlock:`.
+"
 Class {
 	#name : #Srfi41NumbersSequenceFactorial,
 	#superclass : #Srfi41NumbersSequence,

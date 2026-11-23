@@ -1,3 +1,6 @@
+"
+I am the stream of the prime numbers, by the sieve of Eratosthenes of Chris Reade that the comment of `Srfi41Stream` gives in Scheme: the multiples of each prime are found with additions instead of divisions.
+"
 Class {
 	#name : #Srfi41NumbersSequencePrimesReade,
 	#superclass : #Srfi41NumbersSequence,

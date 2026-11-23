@@ -1,3 +1,6 @@
+"
+I am the stream of the Lucas numbers, 2 1 3 4 7 11 and so on: the recurrence is that of the Fibonacci numbers, from 2 and 1.
+"
 Class {
 	#name : #Srfi41NumbersSequenceLucasCorecursive,
 	#superclass : #Srfi41NumbersSequenceFibonacciCorecursive,

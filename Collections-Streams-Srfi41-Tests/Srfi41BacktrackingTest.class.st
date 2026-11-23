@@ -1,3 +1,6 @@
+"
+I test `Srfi41NQueens`: the first solutions and their number on the board of 8 queens, and the number of solutions on the boards from 1 to 8.
+"
 Class {
 	#name : #Srfi41BacktrackingTest,
 	#superclass : #Srfi41AbstractTest,

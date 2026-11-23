@@ -1,3 +1,6 @@
+"
+I am the stream of the natural numbers from 0, defined in terms of itself: after 0, the stream increased by one.
+"
 Class {
 	#name : #Srfi41NumbersSequenceNaturalsCorecursive,
 	#superclass : #Srfi41NumbersSequence,

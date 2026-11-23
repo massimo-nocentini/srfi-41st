@@ -1,3 +1,15 @@
+"
+I evaluate a block of one argument at most once and remember its value: I am the suspended tail of a `Srfi41SICPStream`.
+
+`valueFor: anObject` evaluates my block on `anObject` the first time, and then answers the same value for any argument. A nil value becomes the empty stream. I signal an error when the evaluation asks for my value again.
+
+Instance variables:
+
+- `valuable`: the block.
+- `value`: its value, once evaluated. Before that, the message `value` answers the block.
+- `hasBeenEvaluated`: whether `value` is there.
+- `evaluating`: whether the evaluation is under way.
+"
 Class {
 	#name : #Srfi41UnitValuableMemoizer,
 	#superclass : #Object,

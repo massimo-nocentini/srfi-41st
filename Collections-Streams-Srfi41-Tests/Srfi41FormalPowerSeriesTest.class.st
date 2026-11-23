@@ -1,3 +1,6 @@
+"
+I test `Srfi41FormalPowerSeries`: its arithmetic, powers, roots, reciprocal, reversion, derivative and integral, the exponential and the trigonometric series, and the generating functions of sequences and triangles, on the first coefficients only. `t` and `z` are the series of the variables with these names.
+"
 Class {
 	#name : #Srfi41FormalPowerSeriesTest,
 	#superclass : #Srfi41AbstractTest,

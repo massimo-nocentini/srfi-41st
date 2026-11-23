@@ -1,3 +1,6 @@
+"
+I test the sequences of `Srfi41NumbersSequence` and the streams made from integers, such as `srfi41CountForward`, `srfi41Collatz` and `srfi41ParkMiller`. My fixture is the two definitions of the natural numbers, `iterativeNats` and `corecursiveNats`.
+"
 Class {
 	#name : #Srfi41ArithSequenceTest,
 	#superclass : #Srfi41AbstractTest,
