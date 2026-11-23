@@ -9,7 +9,8 @@ The binary message `>~` puts an object in front of a block that answers the rest
 (1 >~ [ 2 >~ [ ] ]) asArray.
 ""#(1 2)""
 
-((1 >~ [ :doubles | doubles collect: [ :each | each * 2 ] ]) take: 5) asArray.
+((1 >~ [ :doubles | doubles collect: [ :each | each * 2 ] ])
+	take: 5) asArray.
 ""#(1 2 4 8 16)""
 ```
 
